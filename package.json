@@ -17,6 +17,10 @@
   ],
   "author": "Jimmy Laurent",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JimmyLaurent/torrent-search-api.git"
+  },
   "dependencies": {
     "cloudscraper": "^1.4.1",
     "lodash": "^4.17.4",
