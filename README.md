@@ -167,8 +167,8 @@ torrentSearch.downloadTorrent(torrent)
 // Download torrent and write it to the disk
 // torrent: taken from a search result
 torrentSearch.downloadTorrent(torrent, filnamePath)
-    .then(buffer => {
-        // do something with the buffer
+    .then(() => {
+        // OK
     })
     .catch(err => {
         console.log(err);
