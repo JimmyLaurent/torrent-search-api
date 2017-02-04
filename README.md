@@ -16,6 +16,7 @@ npm install torrent-search-api
 - FreshonTv: credentials and cookie authentification
 - Torrent9
 - Torrentz2
+- 1337x
 
 ## Features
 

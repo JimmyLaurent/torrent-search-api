@@ -22,6 +22,7 @@
     "url": "git://github.com/JimmyLaurent/torrent-search-api.git"
   },
   "dependencies": {
+    "bluebird": "^3.4.7",
     "cloudscraper": "^1.4.1",
     "lodash": "^4.17.4",
     "request": "^2.79.0",
