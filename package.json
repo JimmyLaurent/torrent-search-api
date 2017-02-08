@@ -1,7 +1,7 @@
 {
   "name": "torrent-search-api",
   "version": "1.0.4",
-  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, t411, freshon.tv, torrentz2)",
+  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, t411, freshon.tv, torrentz2, 1337x, zetorrents)",
   "main": "index.js",
   "scripts": {},
   "keywords": [
@@ -13,7 +13,9 @@
     "freshon.tv",
     "torrentz2",
     "torrentleech",
-    "iptorrents"
+    "iptorrents",
+    "1337x",
+    "zetorrents"
   ],
   "author": "Jimmy Laurent",
   "license": "MIT",

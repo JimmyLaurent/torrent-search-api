@@ -17,6 +17,7 @@ npm install torrent-search-api
 - Torrent9
 - Torrentz2
 - 1337x
+- ZeTorrents
 
 ## Features
 
