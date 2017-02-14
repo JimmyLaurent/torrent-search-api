@@ -104,6 +104,14 @@ torrentSearch.disableProvider('TorrentLeech');
 
 ```
 
+### Check if a provider exists and is active
+
+```js
+
+torrentSearch.isProviderActive('1337x');
+
+```
+
 ### Search torrent
 
 The result is an array of torrents sorted by seeders with more or less properties depending on the provider.

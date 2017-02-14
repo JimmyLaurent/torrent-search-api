@@ -21,6 +21,14 @@ class TorrentSearchApi {
     return this._getActiveProviders().map(p => p.getInfos());
   }
 
+  isProviderActive(name) {
+    let provider = this._getProvider(name, false);
+    if(provider && provider.isActive) {
+      return true;
+    }
+    return false;
+  }
+
   search(param, ...args) {
     if (typeof param === 'string') {
       return this._search(this._getActiveProviders(), param, ...args);
@@ -28,7 +36,7 @@ class TorrentSearchApi {
     else if (param instanceof Array) {
       return this._search(this._getActiveProvidersByName(arguments[0]), ...args);
     }
-    return Promise.reject('First param must be a query or an array of provider.');
+    return Promise.reject('First param must be a query or an array of providers.');
   }
 
   getTorrentDetails(torrent) {
@@ -54,12 +62,17 @@ class TorrentSearchApi {
     return _.filter(providers, 'isActive');
   }
 
-  _getProvider(name) {
+  _getProvider(name, throwOnError = true) {
     let provider = _.find(providers, p => p.getName().toUpperCase() === name.toUpperCase());
     if (provider) {
       return provider;
     }
-    throw new Error(`Couldn't find '${name}' provider`);
+
+    if (throwOnError) {
+      throw new Error(`Couldn't find '${name}' provider`);
+    }
+
+    return null;
   }
 
   _getActiveProvidersByName(providerNames) {
