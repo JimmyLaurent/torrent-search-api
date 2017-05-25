@@ -1,6 +1,6 @@
 {
   "name": "torrent-search-api",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, t411, freshon.tv, torrentz2, 1337x, zetorrents)",
   "main": "index.js",
   "scripts": {},
@@ -30,7 +30,7 @@
     "request": "^2.79.0",
     "request-x-ray": "^0.1.4",
     "string-format": "^0.5.0",
-    "t411": "^1.0.6",
+    "t411": "^1.0.8",
     "x-ray": "^2.3.1"
   }
 }
