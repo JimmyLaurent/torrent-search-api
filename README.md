@@ -12,12 +12,11 @@ npm install torrent-search-api
 
 - TorrentLeech: cookie authentification
 - IpTorrents: credentials and cookie authentification
-- T411: credentials and token authentification
-- FreshonTv: credentials and cookie authentification
 - Torrent9
 - Torrentz2
 - 1337x
-- ZeTorrents
+- ThePirateBay
+- YggTorrent
 
 ## Features
 
@@ -88,10 +87,10 @@ torrentSearch.enableProvider('Torrent9');
 torrentSearch.enableProvider('IpTorrents', ['uid=XXX;', 'pass=XXX;']);
 
 // Enable private provider with credentials
-torrentSearch.enableProvider('T411', 'USERNAME', 'PASSWORD');
+torrentSearch.enableProvider('IpTorrents', 'USERNAME', 'PASSWORD');
 
 // Enable private provider with token
-torrentSearch.enableProvider('T411', 'TOKEN');
+torrentSearch.enableProvider('xxx', 'TOKEN');
 
 ```
 
