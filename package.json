@@ -1,7 +1,7 @@
 {
   "name": "torrent-search-api",
-  "version": "1.0.10",
-  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, thepriatebay, torrentz2, 1337x)",
+  "version": "1.0.11",
+  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, thepriatebay, torrentz2, 1337x, KickassTorrent, Rarbg)",
   "main": "index.js",
   "scripts": {},
   "keywords": [
@@ -15,7 +15,9 @@
     "iptorrents",
     "1337x",
     "thepiratebay",
-    "tpb"
+    "tpb",
+    "kickasstorrent",
+    "rarbg"
   ],
   "author": "Jimmy Laurent",
   "license": "MIT",

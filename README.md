@@ -17,6 +17,8 @@ npm install torrent-search-api
 - 1337x
 - ThePirateBay
 - YggTorrent
+- KickassTorrent
+- Rarbg
 
 ## Features
 
