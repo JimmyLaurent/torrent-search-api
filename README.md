@@ -16,9 +16,11 @@ npm install torrent-search-api
 - Torrentz2
 - 1337x
 - ThePirateBay
-- YggTorrent
-- KickassTorrent
+- YggTorrent : credentials and cookie authentification
+- KickassTorrents
 - Rarbg
+- TorrentProject
+- T411.si
 
 ## Features
 
