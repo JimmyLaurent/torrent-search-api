@@ -30,6 +30,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "cloudscraper": "^1.4.1",
+    "fs-extra": "^4.0.2",
     "lodash": "^4.17.4",
     "request": "^2.79.0",
     "request-x-ray": "^0.1.4",
