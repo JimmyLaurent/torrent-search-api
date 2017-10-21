@@ -47,6 +47,10 @@ class TorrentSearchApi {
     return this._getProvider(torrent.provider).downloadTorrent(torrent, filenamePath);
   }
 
+  getMagnet(torrent) {
+    return this._getProvider(torrent.provider).getMagnet(torrent);
+  }
+
   _search(selectedProviders, query, category, limit) {
     query = query === '' ? undefined : query;
     category = category === '' ? undefined : category;

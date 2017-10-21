@@ -161,7 +161,23 @@ torrentSearch.getTorrentDetails(torrent)
         console.log(err);
     });
 
-````
+```
+
+### Torrent magnet
+
+```js
+
+// Get magnet url
+// torrent: taken from a search result
+torrentSearch.getMagnet(torrent)
+    .then(magnet => {
+        console.log(magnet);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+```
 
 ### Download torrent
 
@@ -186,7 +202,7 @@ torrentSearch.downloadTorrent(torrent, filnamePath)
     .catch(err => {
         console.log(err);
     });
-````
+```
 
 ## License
 
