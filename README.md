@@ -20,7 +20,6 @@ npm install torrent-search-api
 - KickassTorrents
 - Rarbg
 - TorrentProject
-- T411.si
 
 ## Features
 
