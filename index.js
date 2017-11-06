@@ -9,6 +9,11 @@ class TorrentSearchApi {
     return this._getProvider(providerName).enableProvider(...args);
   }
 
+  enablePublicProviders() {
+    let publicProviders = this.getProviders().filter(p => p.public).map(p => p.name);
+    publicProviders.map(p => this.enableProvider(p));
+  }
+
   disableProvider(providerName) {
     this._getProvider(providerName).disableProvider();
   }

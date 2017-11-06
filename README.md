@@ -20,6 +20,7 @@ npm install torrent-search-api
 - KickassTorrents
 - Rarbg
 - TorrentProject
+- ExtraTorrent
 
 ## Features
 
@@ -82,6 +83,9 @@ console.log(torrentSearch.getActiveProviders());
 ### Enable provider
 
 ```js
+
+// Enable public providers
+torrentSearch.enablePublicProviders();
 
 // Enable public provider
 torrentSearch.enableProvider('Torrent9');
