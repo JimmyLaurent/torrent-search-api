@@ -2,15 +2,15 @@ const fs = require('fs');
 const _ = require('lodash');
 const providers = require('./lib/providers');
 
-
 class TorrentSearchApi {
-
   enableProvider(providerName, ...args) {
     return this._getProvider(providerName).enableProvider(...args);
   }
 
   enablePublicProviders() {
-    let publicProviders = this.getProviders().filter(p => p.public).map(p => p.name);
+    let publicProviders = this.getProviders()
+      .filter(p => p.public)
+      .map(p => p.name);
     publicProviders.map(p => this.enableProvider(p));
   }
 
@@ -28,7 +28,7 @@ class TorrentSearchApi {
 
   isProviderActive(name) {
     let provider = this._getProvider(name, false);
-    if(provider && provider.isActive) {
+    if (provider && provider.isActive) {
       return true;
     }
     return false;
@@ -37,11 +37,15 @@ class TorrentSearchApi {
   search(param, ...args) {
     if (typeof param === 'string') {
       return this._search(this._getActiveProviders(), param, ...args);
+    } else if (param instanceof Array) {
+      return this._search(
+        this._getActiveProvidersByName(arguments[0]),
+        ...args
+      );
     }
-    else if (param instanceof Array) {
-      return this._search(this._getActiveProvidersByName(arguments[0]), ...args);
-    }
-    return Promise.reject('First param must be a query or an array of providers.');
+    return Promise.reject(
+      'First param must be a query or an array of providers.'
+    );
   }
 
   getTorrentDetails(torrent) {
@@ -49,7 +53,10 @@ class TorrentSearchApi {
   }
 
   downloadTorrent(torrent, filenamePath) {
-    return this._getProvider(torrent.provider).downloadTorrent(torrent, filenamePath);
+    return this._getProvider(torrent.provider).downloadTorrent(
+      torrent,
+      filenamePath
+    );
   }
 
   getMagnet(torrent) {
@@ -61,10 +68,12 @@ class TorrentSearchApi {
     category = category === '' ? undefined : category;
     limit = limit === '' ? undefined : limit;
 
-    return Promise.all(selectedProviders.map(p => p.search(query, category, limit)))
+    return Promise.all(
+      selectedProviders.map(p => p.search(query, category, limit))
+    )
       .then(results => _.flatten(results))
       .then(results => _.orderBy(results, ['seeds'], ['desc']))
-      .then(results => limit ? results.slice(0, limit) : results);
+      .then(results => (limit ? results.slice(0, limit) : results));
   }
 
   _getActiveProviders() {
@@ -72,7 +81,10 @@ class TorrentSearchApi {
   }
 
   _getProvider(name, throwOnError = true) {
-    let provider = _.find(providers, p => p.getName().toUpperCase() === name.toUpperCase());
+    let provider = _.find(
+      providers,
+      p => p.getName().toUpperCase() === name.toUpperCase()
+    );
     if (provider) {
       return provider;
     }
@@ -85,7 +97,11 @@ class TorrentSearchApi {
   }
 
   _getActiveProvidersByName(providerNames) {
-    return this._getActiveProviders().filter(p => providerNames.map(m => m.toUpperCase()).includes(p.getName().toUpperCase()));
+    return this._getActiveProviders().filter(p =>
+      providerNames
+        .map(m => m.toUpperCase())
+        .includes(p.getName().toUpperCase())
+    );
   }
 }
 
