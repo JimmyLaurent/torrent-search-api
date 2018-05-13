@@ -1000,9 +1000,9 @@ wrap-fn@^0.1.5:
   dependencies:
     co "3.1.0"
 
-x-ray-scraper@^3.0.2:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/x-ray-scraper/-/x-ray-scraper-3.0.3.tgz#5cbd0c5221f512c3ab28d1f81d21e4203f3d4b1c"
+x-ray-scraper@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/x-ray-scraper/-/x-ray-scraper-3.0.4.tgz#936027dac917940d49ebb04bd528224ad48313e4"
   dependencies:
     bluebird "^3.5.1"
     cheerio "~0.22.0"
