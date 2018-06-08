@@ -108,6 +108,9 @@ torrentSearch.enableProvider('xxx', 'TOKEN');
 // Disable provider
 torrentSearch.disableProvider('TorrentLeech');
 
+// Disable all enabled providers
+torrentSearch.disableAllProviders();
+
 ```
 
 ### Check if a provider exists and is active
