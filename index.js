@@ -17,6 +17,11 @@ class TorrentSearchApi {
   disableProvider(providerName) {
     this._getProvider(providerName).disableProvider();
   }
+  
+  disableAllProviders() {
+    this.getProviders()
+      .map(p => this.disableProvider(p.name))
+  }
 
   getProviders() {
     return providers.map(p => p.getInfos());
