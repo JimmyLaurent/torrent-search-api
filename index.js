@@ -63,6 +63,10 @@ class TorrentSearchApi {
     );
   }
 
+  overrideConfig(providerName, newConfig) {
+    return this._getProvider(providerName).overrideConfig(newConfig);
+  }
+
   getMagnet(torrent) {
     return this._getProvider(torrent.provider).getMagnet(torrent);
   }
