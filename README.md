@@ -210,6 +210,17 @@ torrentSearch.downloadTorrent(torrent, filnamePath)
     });
 ```
 
+### Override provider config
+
+```js
+
+// Fully or partial override of the provider config
+torrentSearch.overrideConfig(providerName, newConfig);
+
+```
+
+
+
 ## License
 
 MIT © 2017 [Jimmy Laurent](https://github.com/JimmyLaurent)
