@@ -1,0 +1,28 @@
+{
+  "name": "Torrent9",
+  "baseUrl": "https://ww2.torrent9.blue",
+  "enableCloudFareBypass": true,
+  "searchUrl": "/search_torrent/{cat}/{query}/page-0",
+  "categories": {
+     "All": "",
+     "Movies": "films",
+     "TV": "series",
+     "Music": "musique",
+     "Apps": "logiciels",
+     "Books": "ebook",
+     "Top100": "url:/top_torrent.php"
+  },
+  "defaultCategory": "All",
+  "resultsPerPageCount": 60,
+  "itemsSelector": "tbody > tr",
+  "itemSelectors": {
+     "title": "a",
+     "seeds": ".seed_ok | int",
+     "peers": "td:nth-child(4) | int",
+     "size": "td:nth-child(2)",
+     "link": "a@href | replace:/torrent,/get_torrent | format:{0}.torrent",
+     "desc": "a@href"
+  },
+  "paginateSelector": "a:has(strong:contains(Suiv))@href",
+  "torrentDetailsSelector": ".movie-detail > .row:nth-child(1)@html"
+}

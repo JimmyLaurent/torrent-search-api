@@ -1,9 +1,9 @@
-const TorrentProvider = require('../TorrentProvider');
+const TorrentProvider = require('../../lib/TorrentProvider');
 
-class TorrentProject extends TorrentProvider {
+class FakeProvider extends TorrentProvider {
   constructor() {
     super({
-      name: 'TorrentProject',
+      name: 'FakeProvider',
       baseUrl: 'http://torrentproject.se',
       searchUrl: '/?num=100&start=0&orderby=seeders&s={query}&filter={cat}',
       categories: {
@@ -41,4 +41,4 @@ class TorrentProject extends TorrentProvider {
   }
 }
 
-module.exports = TorrentProject;
+module.exports = FakeProvider;

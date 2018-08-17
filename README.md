@@ -8,6 +8,18 @@ Yet another node torrent search api based on x-ray.
 npm install torrent-search-api
 ```
 
+## Upgrade from version 1
+
+```js
+// Replace
+const TorrentSearchApi = require('torrent-search-api');
+const torrentSearch = new TorrentSearchApi();
+
+// With
+const torrentSearch = require('torrent-search-api');
+
+```
+
 ## Supported providers
 
 - TorrentLeech: cookie authentification
@@ -38,18 +50,10 @@ npm install torrent-search-api
 ```js
 const TorrentSearchApi = require('torrent-search-api');
 
-const torrentSearch = new TorrentSearchApi();
-
-torrentSearch.enableProvider('Torrent9');
+TorrentSearchApi.enableProvider('Torrent9');
 
 // Search '1080' in 'Movies' category and limit to 20 results
-torrentSearch.search('1080', 'Movies', 20)
-     .then(torrents => {
-         console.log(torrents);
-     })
-     .catch(err => {
-         console.log(err);
-     });
+const torrents = await TorrentSearchApi.search('1080', 'Movies', 20);
 ```
 
 # Torrent Search API
@@ -58,12 +62,12 @@ torrentSearch.search('1080', 'Movies', 20)
 
 ```js
 // Get providers
-console.log(torrentSearch.getProviders());
+const providers = TorrentSearchApi.getProviders();
 
 // Get active providers
-console.log(torrentSearch.getActiveProviders());
+const activeProviders = TorrentSearchApi.getActiveProviders();
 
-// Results
+// providers
 {
     {
         name: 'Torrent9',
@@ -85,19 +89,19 @@ console.log(torrentSearch.getActiveProviders());
 ```js
 
 // Enable public providers
-torrentSearch.enablePublicProviders();
+TorrentSearchApi.enablePublicProviders();
 
 // Enable public provider
-torrentSearch.enableProvider('Torrent9');
+TorrentSearchApi.enableProvider('Torrent9');
 
 // Enable private provider with cookies
-torrentSearch.enableProvider('IpTorrents', ['uid=XXX;', 'pass=XXX;']);
+TorrentSearchApi.enableProvider('IpTorrents', ['uid=XXX;', 'pass=XXX;']);
 
 // Enable private provider with credentials
-torrentSearch.enableProvider('IpTorrents', 'USERNAME', 'PASSWORD');
+TorrentSearchApi.enableProvider('IpTorrents', 'USERNAME', 'PASSWORD');
 
 // Enable private provider with token
-torrentSearch.enableProvider('xxx', 'TOKEN');
+TorrentSearchApi.enableProvider('xxx', 'TOKEN');
 
 ```
 
@@ -106,10 +110,10 @@ torrentSearch.enableProvider('xxx', 'TOKEN');
 ```js
 
 // Disable provider
-torrentSearch.disableProvider('TorrentLeech');
+TorrentSearchApi.disableProvider('TorrentLeech');
 
 // Disable all enabled providers
-torrentSearch.disableAllProviders();
+TorrentSearchApi.disableAllProviders();
 
 ```
 
@@ -117,7 +121,7 @@ torrentSearch.disableAllProviders();
 
 ```js
 
-torrentSearch.isProviderActive('1337x');
+TorrentSearchApi.isProviderActive('1337x');
 
 ```
 
@@ -131,25 +135,13 @@ The result is an array of torrents sorted by seeders with more or less propertie
 // Query: 1080
 // Category: Movies (optional)
 // Limit: 20 (optional)
-torrentSearch.search('1080', 'Movies', 20)
-    .then(torrents => {
-        console.log(torrents);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+const torrents = await torrentSearch.search('1080', 'Movies', 20);
 
 // Search with given providers
 // query: 1080
 // category: Movies (optional)
 // limit: 20 (optional)
-torrentSearch.search(['IpTorrents', 'Torrent9'], '1080', 'Movies', 20)
-    .then(torrents => {
-        console.log(torrents);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+const torrents = await torrentSearch.search(['IpTorrents', 'Torrent9'], '1080', 'Movies', 20);
 
 ```
 
@@ -159,13 +151,7 @@ torrentSearch.search(['IpTorrents', 'Torrent9'], '1080', 'Movies', 20)
 
 // Get details (raw scraped html)
 // torrent: taken from a search result
-torrentSearch.getTorrentDetails(torrent)
-    .then(html => {
-        console.log(html);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+const torrentHtmlDetail = await TorrentSearchApi.getTorrentDetails(torrent);
 
 ```
 
@@ -175,13 +161,7 @@ torrentSearch.getTorrentDetails(torrent)
 
 // Get magnet url
 // torrent: taken from a search result
-torrentSearch.getMagnet(torrent)
-    .then(magnet => {
-        console.log(magnet);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+const magnet = await TorrentSearchApi.getMagnet(torrent);
 
 ```
 
@@ -191,36 +171,83 @@ torrentSearch.getMagnet(torrent)
 
 // Download a buffer
 // torrent: taken from a search result
-torrentSearch.downloadTorrent(torrent)
-    .then(buffer => {
-        // do something with the buffer
-    })
-    .catch(err => {
-        console.log(err);
-    });
+const buffer = await TorrentSearchApi.downloadTorrent(torrent);
 
 // Download torrent and write it to the disk
 // torrent: taken from a search result
-torrentSearch.downloadTorrent(torrent, filnamePath)
-    .then(() => {
-        // OK
-    })
-    .catch(err => {
-        console.log(err);
-    });
+await TorrentSearchApi.downloadTorrent(torrent, filnamePath);
 ```
 
-### Override provider config
+### Load custom providers
+
+You can code and add your custom providers (see provider definition format in existing providers)
+Don't forget to enable your provider if you intend to use it.
 
 ```js
 
-// Fully or partial override of the provider config
-torrentSearch.overrideConfig(providerName, newConfig);
+// load multipe providers
+// from a TorrentProvider custom class definition or instance
+const MyCustomProvider = require('./MyCustomProvider');
+TorrentSearchApi.loadProvider(MyCustomProvider);
+
+// from a provider object definition
+TorrentSearchApi.loadProvider( {/* provider object definition */});
+
+// from an absolute path to class definition or json object definition
+const path = require('path');
+const providerFullPath = path.join(__dirname, './lib/providers/MyCustomProvider');
+TorrentSearchApi.loadProviders(providerFullPath);
+
+// load multipe providers within a directory
+// only absolute path are allowed
+// it loads every *.json and *.js file
+const path = require('path');
+const providerDirFullPath = path.join(__dirname, './lib/providers/');
+TorrentSearchApi.loadProviders(providerDirFullPath);
+
+// load multipe providers
+const MyCustomProvider = require('./MyCustomProvider');
+TorrentSearchApi.loadProviders(MyCustomProvider, {/* provider object definition */}, ...);
 
 ```
 
+### Remove provider
 
+```js
+
+// Remove provider
+TorrentSearchApi.removeProvider('MyCustomProvider');
+
+```
+
+### Create TorrentSearchApi instance
+
+If you want to create an instance of the api without loading all the default providers and only load the ones that you want
+
+```js
+
+// create instance
+const createApi = require('torrent-search-api/createApi');
+const TorrentSearchApi = createApi(/* same arguments as "loadProviders" method */)
+
+```
+
+### Create a new provider
+
+Check "test/createProvider.test.js" file if you want to create a new provider.
+
+Running tests command
+
+```bash
+npm run test:watch
+```
+
+### Override provider config
+ ```js
+ // Fully or partial override of the provider config
+TorrentSearchApi.overrideConfig(providerName, newConfig);
+ ```
 
 ## License
 
-MIT © 2017 [Jimmy Laurent](https://github.com/JimmyLaurent)
+MIT © 2018 [Jimmy Laurent](https://github.com/JimmyLaurent)
