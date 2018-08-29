@@ -1,0 +1,1810 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recherche - Yggtorrent</title>
+    <!-- 
+			/**********************************************************************************************************************************************
+			*											__   __             _                                  _                                          *
+			* 											\ \ / /            | |                                | |                                         *
+			*  										     \ V / __ _   __ _ | |_  ___   _ __  _ __  ___  _ __  | |_                                        * 
+			*   										  \ / / _` | / _` || __|/ _ \ | '__|| '__|/ _ \| '_ \ | __|                                       *
+			*   										  | || (_| || (_| || |_| (_) || |   | |  |  __/| | | || |_                                        *
+			*   										  \_/ \__, | \__, | \__|\___/ |_|   |_|   \___||_| |_| \__|                                       *
+			*       										   __/ |  __/ |                                                                               *
+			*       										  |___/  |___/  Release 3.1                                                                   *
+			*																		                                                                      *
+			*   			Proudly powered by имярек, Somewhere in the World. Our mail if you find a bug/vulnerability : contact@ygg.is 			      *
+			*																																			  * 	
+			***********************************************************************************************************************************************/ 
+-->			
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- START INCLUDES -->
+<!-- Нам нужно подумать об организации и минимизации этого дерьма!! -->
+<link href="https://ww4.yggtorrent.is/static/css/bootstrap.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700' rel='stylesheet' type='text/css'>
+<script src="https://ww4.yggtorrent.is/static/js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<script src='https://ww4.yggtorrent.is/static/js/bootstrap-notify.min.js'></script>
+<link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">	
+<script src='https://ww4.yggtorrent.is/static/js/jnotifier.min.js'></script>
+<link href="https://ww4.yggtorrent.is/static/css/select2.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+<link href="https://ww4.yggtorrent.is/static/css/select2.css" rel="stylesheet">
+<link href="https://ww4.yggtorrent.is/static/css/fontawesome.css" rel="stylesheet" >
+<link href="https://ww4.yggtorrent.is/static/css/custom.css" rel="stylesheet" >
+<link href="https://ww4.yggtorrent.is/static/css/master.css?106" rel="stylesheet" >
+<link href="https://ww4.yggtorrent.is/static/css/jnotifier.css" rel="stylesheet" type="text/css">
+<!-- COUNTDOWN -->
+<script src="https://ww4.yggtorrent.is/static/countdown/js/jquery.plugin.min.js"></script>
+<script src="https://ww4.yggtorrent.is/static/countdown/js/jquery.countdown.js"></script>
+<!-- END INCLUDES -->    <!-- bbcode editor -->
+    <script src="https://cdn.wysibb.com/js/jquery.wysibb.min.js"></script>
+    <script src="https://cdn.wysibb.com/lang/fr.js"></script>
+    <link rel="stylesheet" href="https://cdn.wysibb.com/css/default/wbbtheme.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+
+
+
+    <!-- toast -->
+    <script src="https://ww4.yggtorrent.is/static/js/jquery.toast.min.js"></script>
+    <link rel="stylesheet" href="https://ww4.yggtorrent.is/static/css/jquery.toast.min.css"" />
+  </head>
+  <body>
+
+
+
+	<!-- Nfo Modal -->
+	<div class="modal fade" id="nfoModal" tabindex="-1" role="dialog" aria-labelledby="Nfo" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="Nfo">Nfo</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="nfo" style="background: #f1f1f1;">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <style type="text/css">
+   
+   .select2-container , .select2-container--default {
+      min-width: 400px !important;
+      width: auto !important;    
+    }
+      
+   .hide {
+      display: none !important;
+   }
+
+   #middle .list-torrent th:after {
+        content: "\f0dc";
+   }
+
+   #middle .list-torrent th.asc:after {
+        content: "\f0de";
+   }
+
+    #middle .list-torrent th.desc:after {
+        content: "\f0dd";
+   }
+             
+  </style>
+
+<style type="text/css">
+
+
+ #middle .small-padding tbody td {font-size: 13px !important; padding: 7px 10px !important;}
+    #middle .search-criteria{width:100%; background: #fff;}
+    #middle .search-criteria td{font-size:13px;padding: 10px 8px;background:#ffffff;border-right:1px solid #ebebeb;border-bottom:1px solid #ebebeb;}
+    #middle .search-criteria tr:last-child td{border-bottom:0;}
+    #middle .search-criteria td.adv_search_option,
+    #middle .search-criteria td:first-child{font-size:10px;text-align:right;background:#f6f6f6;width:160px;text-transform:uppercase;}
+    #middle .search-criteria td .green{color:#95bc0f;}
+    #middle .search-criteria td .red{color:#ca1f1f;}
+    #middle .search-criteria td a{color:#4e5c6f;}
+    #middle .search-criteria td a:hover{text-decoration:underline;}
+    #middle .search-criteria td a.butt{max-width:100%;color:#5ad9a4;top:-1px;font-size:11px;font-weight:700;text-transform:uppercase;border:3px solid #5ad9a4;border-radius:25px;padding:5px 10px;}
+    #middle .search-criteria td a.butt:hover{color:#ffffff;background:#5ad9a4;text-decoration:none;}
+    #middle .search-criteria td.of{overflow:hidden;}
+    #middle .search-criteria td .pouce{color:#ffffff;padding:2px 5px 3px;border-radius:5px;font-size:11px;font-weight:700;text-decoration:none!important;}
+    #middle .search-criteria td .pouce.green{background:#95bc0f;}
+    #middle .search-criteria td .pouce.red{background:#ca1f1f;}
+    #middle .search-criteria td.hadopi{background:#ffffff;text-transform:initial;text-align:center;font-size:12px;padding:20px 25px 25px;}
+    #middle .search-criteria td.hadopi h3{text-transform:uppercase;font-size:14px;font-weight:700;padding-bottom:5px;}
+    #middle .search-criteria td.hadopi p{margin:auto;max-width:100%;padding-bottom:15px;}
+    #middle .search-criteria td.hadopi a.trust{max-width:100%;color:#4e5c6f;font-size:11px;font-weight:700;text-transform:uppercase;border:3px solid #4e5c6f;border-radius:25px;padding:5px 10px;}
+    #middle .search-criteria td.hadopi a.trust:hover{background:#4e5c6f;color:#ffffff;text-decoration:none;}
+    #middle .search-criteria td.alone{background:#ffffff;text-align:left;}
+    #middle .search-criteria td.large{width:200px;}
+    #middle .search-criteria td button{margin-bottom:0!important;width:160px!important;}
+    #middle .search-criteria td button.solo{margin-bottom:0!important;margin-top:0!important;width:160px!important;}
+    #middle .search-criteria td .input-table{width:100%; border: 1px solid #06060617; padding: 6px;}
+    #middle .search-criteria td .input-table[type='file']{border: inherit !important;}
+
+    #middle .search-criteria td input[type=radio]{margin-right:4px;}
+    #middle .search-criteria td input { border-radius: 5px; }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 7px !important;
+}
+
+</style>
+    
+    
+<!--- Форма входа -->
+<div id="connect">
+	<h3>Se connecter</h3>
+	<h5>Veuillez remplir tout les champs.</h5>
+	<form action="https://ww4.yggtorrent.is/user/login" method="post" id="user-login">
+		<input type="text" name="id" placeholder="Pseudo" required="" />
+		<input type="password" name="pass" placeholder="Mot de passe" required="" autocomplete="off"/>
+						<div id="ban_msg_login" style="display: none;"><center style="margin: 10px 10px; color: #ff3f3f; font-weight: bold;" >Votre compte a été banni! <br><span style="font-weight: bold; font-size: 15px; color: #582a2a;">Fin du ban : <span class="ban_duration"></span></span> <a id="ban_reason" style="font-weight:bold; font-size: 13px;">Voir le motif</a></center></div>
+		<div id="login_msg_pass" style="display: none;"><center style="margin: 10px 10px; color: #ff3f3f; font-weight: bold;" >Échec de connexion . Vérifiez vos identifiants<br></center></div>
+		<div id="login_msg_mail" style="display: none;"><center style="margin: 10px 10px; color: #ff3f3f; font-weight: bold;" >Vous n'avez pas confirmer votre compte à l'aide du mail que nous vous avons envoyé<br></center></div> 
+		<center id="resetpass" style=" margin: 10px 10px;  font-weight: bold;" ><a href="https://ww4.yggtorrent.is/user/reset_password">Mot de passe oublié ?</a></center>
+		<input type="hidden" name="ci_csrf_token" value="">
+
+		<button type="submit">Connexion <i class="ico_unlock"></i></button>
+	</form>
+</div>
+<div class="fadeconnect"></div>
+
+	<div class="panel" id="top_panel">
+
+		<div class="ct">
+			<ul>
+				<li><a data-connect="" title="" id="register"><span class="ico_lock"></span> S'identifier</a></li>
+				<li><a href="https://ww4.yggtorrent.is/user/register" title=""><span class="ico_user-plus"></span> <strong>S'inscrire</strong></a></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+<script type="text/javascript">
+	$(function(){
+		$(document).on('click','#panel-btn', function(){
+			if($('.panel-cache').is(':visible')){
+				$('.panel-cache').slideUp(400);
+			}else{
+				$('.panel-cache').slideDown(400);
+			}
+		});
+	});
+</script>
+
+
+<header role="header">
+	<div class="ct">
+		<a class="ico_navicon nav" data-nav="no"></a>
+		<a class="ico_user user" data-user="no"></a>
+		<a href="https://ww4.yggtorrent.is/" title="YggTorrent" class="logotype">
+			<img style="margin-top: -4px" class="desktop" alt="YggTorrent - La communauté Bittorrent francophone !" src="https://ww4.yggtorrent.is//static/img/logo.svg">
+			<img class="mobile" alt="YggTorrent - La communauté Bittorrent francophone !" src="https://ww4.yggtorrent.is//static/img/logotype-mobile.png">
+		</a>
+		<form class="search" action="https://ww4.yggtorrent.is/engine/search" method="get">
+			<div class="input">
+				<input type="text" name="name" placeholder="Rechercher des torrents">
+				<button type="submit" name="do" value="search"><span class="ico_search"></span></button>
+			</div>
+		</form>
+		<style type="text/css">
+		.pulse {
+		  cursor: pointer;
+		  box-shadow: 0 0 0 rgba(94, 194, 218, 0.4);
+		  animation: pulse 1s infinite;
+		}
+		.pulse:hover {
+		  animation: none;
+		}
+
+		@-webkit-keyframes pulse {
+		  0% {
+		    -webkit-box-shadow: 0 0 0 0 rgba(94, 194, 218, 0.4);
+		  }
+		  70% {
+		      -webkit-box-shadow: 0 0 0 10px rgba(94, 194, 218, 0);
+		  }
+		  100% {
+		      -webkit-box-shadow: 0 0 0 0 rgba(94, 194, 218, 0);
+		  }
+		}
+		@keyframes pulse {
+		  0% {
+		    -moz-box-shadow: 0 0 0 0 rgba(94, 194, 218, 0.4);
+		    box-shadow: 0 0 0 0 rgba(94, 194, 218, 0.4);
+		  }
+		  70% {
+		      -moz-box-shadow: 0 0 0 10px rgba(94, 194, 218, 0);
+		      box-shadow: 0 0 0 10px rgba(94, 194, 218, 0);
+		  }
+		  100% {
+		      -moz-box-shadow: 0 0 0 0 rgba(94, 194, 218, 0);
+		      box-shadow: 0 0 0 0 rgba(94, 194, 218, 0);
+		  }
+		}
+		</style>
+		<a href="https://ww4.yggtorrent.is/user/donate" class="donate pulse"><span class="ico_star"></span> Bonus Go & Freeleech </a>
+	</div>
+</header>
+
+<div id="top">
+	<div class="ct">
+		<nav role="navigation">
+			<ul>
+
+				<li class="color">  
+					<a class="title" href="https://ww4.yggtorrent.is/" title=""><span class="ico_home"></span> Accueil</a>
+				</li>
+
+				<li class="color">  
+					<a class="title" href="#"> Catégories</a>
+					<ul>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=all&do=search">Films & Vidéos</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2139&sub_category=all&do=search">Audio</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=all&do=search">Application</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=all&do=search">Jeu vidéo</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=all&do=search">Ebook</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2141&sub_category=all&do=search">Emulation</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2143&sub_category=all&do=search">GPS</a></li>
+											</ul>
+				</li>
+
+				<li class="color">  
+					<a class="title torrents" href="#"><span class="ico_download"></span> Torrents</a>
+					<ul>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?do=search">Rechercher un torrent</a></li>
+						<li><a href="https://ww4.yggtorrent.is/top/day">Torrents du jour</a></li>
+						<li><a href="https://ww4.yggtorrent.is/top/week">Torrents de la semaine</a></li>
+						<li><a href="https://ww4.yggtorrent.is/top/month">Torrents du mois</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/mostseeded">Torrents rapides</a></li>
+						<li><a href="https://ww4.yggtorrent.is/engine/search?name=&do=search">Derniers torrents ajoutés</a></li>
+						<li><a href="https://ww4.yggtorrent.is/user/upload_torrent">Uploader un torrent</a></li>
+					</ul>
+				</li>
+			
+				<li class="color"> 
+					<a class="title trends" href="https://ww3.yggtorrent.is/forum/index.php?threads/la-rubrique-exclusivit%C3%A9s.4175/#post-24436"><span class="ico_star"></span> Exclusivités</a>
+				</li>
+
+				<li class="color"> 
+					<a class="title" href="https://ww4.yggtorrent.is/engine/mostcompleted" title=""><span class="ico_trophy"></span> Top 100	</a>
+				</li>
+			
+			<li class="color">  
+				<a class="title">Communauté</a>
+				<ul>
+					<li><a href="https://ww2.yggtorrent.is/forum/index.php?forums/proposer-un-fichier-%C3%A0-lupload.90/" target="_blank">Proposition d'upload</a></li>
+					<li><a onclick='alert("Coming soon")'>FAQ</a></li>
+					<li><a onclick='alert("Coming soon")'>Nous contacter</a></li>
+					<li><a href="https://twitter.com/yggtorrent_com" target="_blank">Nous suivre sur Twitter</a></li>
+				</ul>
+			</li>
+
+			<li class="color"> 
+				<a class="title" href="https://wiki.yggtorrent.is/">Wiki</a>
+			</li>
+
+			<li class="color">  
+				<a class="title" href="#">Flux RSS</a>
+				<ul>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2145">Films & Vidéos</a></li>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2139">Audio</a></li>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2144">Application</a></li>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2142">Jeu vidéo</a></li>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2140">Ebook</a></li>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2141">Emulation</a></li>
+					<li><a href="https://ww4.yggtorrent.is/rss?type=1&parent_category=2143">GPS</a></li>
+									</ul>
+			</li>
+			<li class="color"> 
+				<a class="title" target="_blank" href="https://yggtorrent.is/forum/">Forum</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+</div>
+
+<!-- Перечень категорий -->
+<div class="back-cat class="active""></div>
+<div id="cat" class="active">
+	<div class="open"><span class="ico_chevron-left"></span> <strong>Sections</strong></div>
+	<ul> 
+	<style>
+	#cat ul > li.foot > ul > li:first-child a {
+		color: #95d6c8;
+	}
+	
+	#cat ul > li.foot > ul > li:first-child:before {
+		background: #8adecc;
+	}
+	</style>
+	  
+		<li class="film">
+			<ul>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=all&do=search">Films & vidéos <span class="ico_film"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2178&do=search">Animation</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2179&do=search">Animation Série</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2180&do=search"">Concert</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2181&do=search"">Documentaire</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2182&do=search"">Emission TV</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2183&do=search"">Film</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2184&do=search"">Série TV</a></li>           
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2185&do=search"">Spectacle</a></li>      
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2186&do=search"">Sport</a></li>  
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2145&sub_category=2187&do=search"">Vidéo-clips</a></li>                              
+			</ul>
+		</li>   
+		<li class="livre">
+			<ul>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=all&do=search">eBook <span class="ico_book"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=2151&do=search">Audio</a></li>           
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=2152&do=search">BDS</a></li>           
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=2153&do=search">Comics</a></li>           
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=2154&do=search">Livres</a></li>           
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=2155&do=search">Manga</a></li>           
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2140&sub_category=2156&do=search">Presse</a></li>           
+			</ul>
+		</li>
+		<li class="audio">
+			<ul>   
+
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2139&sub_category=all&do=search">Audio <span class="ico_music"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2139&sub_category=2147&do=search">Karaoké</a></li>       
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2139&sub_category=2148&do=search">Musique</a></li>       
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2139&sub_category=2150&do=search">Podcast Radio</a></li>       
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2139&sub_category=2149&do=search">Samples</a></li>       
+			</ul>
+		</li>
+				<li class="app">
+			<ul>
+
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=all&do=search">Applications <span class="ico_windows"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2177&do=search">Autre</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2176&do=search">Formation</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2171&do=search">Linux</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2172&do=search">MacOS</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2174&do=search">Smartphone</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2175&do=search">Tablette</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2144&sub_category=2173&do=search">Windows</a></li>
+			</ul>
+		</li>
+		<li class="jeu">
+			<ul>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=all&do=search">Jeux vidéo <span class="ico_gamepad"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2167&do=search">Autre</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2159&do=search">Linux</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2160&do=search">MacOS</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2162&do=search">Microsoft</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2163&do=search">Nintendo</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2165&do=search">Smartphone</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2164&do=search">Sony</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2166&do=search">Tablette</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2142&sub_category=2161&do=search">Windows</a></li>        
+			</ul>
+		</li>
+		<li class="emu">
+			<ul>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2141&sub_category=all&do=search">Émulation <span class="ico_gamepad"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2141&sub_category=2157&do=search">Émulateur</a></li>       
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2141&sub_category=2158&do=search">ROM/ISO</a></li>       
+			</ul>
+		</li>
+		<li class="gps">
+			<ul>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2143&sub_category=all&do=search">GPS <span class="ico_map"></span></a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2143&sub_category=2168&do=search">Applications</a></li>
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2143&sub_category=2169&do=search">Cartes</a></li>        
+				<li><a href="https://ww4.yggtorrent.is/engine/search?name=&description=&file=&uploader=&category=2143&sub_category=2170&do=search">Divers</a></li>        
+			</ul>
+		</li>
+	</ul>
+</div>
+
+	
+	<script type="text/javascript">
+		$(function(){
+			$('select').select2();
+		});
+	</script>
+      <!-- Tpl -->
+      <script id="option_field" type="x-tmpl-mustache">     
+       {{^display}}
+       <tr>     
+        <td>{{name}}</td>
+          <td>
+            <select name="option_{{name}}{{#multiple}}:multiple{{/multiple}}[]" style="height:200px" multiple>
+              <option></option>
+              {{#values}}
+                <option>{{.}}</option>
+              {{/values}}
+            </select>
+          </td>
+       {{/display}}
+
+       {{#display}}
+        <td class="adv_search_option">{{name}}</td>
+          <td>
+            <select name="option_{{name}}{{#multiple}}:multiple{{/multiple}}[]" style="height:200px" multiple>
+              <option></option>
+              {{#values}}
+                <option>{{.}}</option>
+              {{/values}}
+            </select>
+          </td>
+       </tr>
+       {{/display}}
+      </script>
+
+
+    <div class="container-fluid" id="middle">
+      <!-- Основной контейнер -->
+      <main class="ct" role="main">
+        <div class="row">
+         
+            <div class="col-lg-12">
+              
+              <div id="title">
+          <h1> Rechercher un torrent</h1>
+        </div>
+
+<style type="text/css">
+
+.input-table::-webkit-input-placeholder {
+    color: #00000094;
+    font-size: 12px;
+    opacity: 1; 
+}
+.input-table:-moz-placeholder {
+    color: #00000094;
+    font-size: 12px;
+    opacity: 1; 
+}
+.input-table::-moz-placeholder {
+    color: #00000094;
+    font-size: 12px;
+    opacity: 1; 
+}
+.input-table:-ms-input-placeholder {
+    color: #00000094;
+    font-size: 12px;
+    opacity: 1; 
+}
+
+.search-criteria tr td:first-child, .search-criteria td.adv_search_option {
+	font-weight: bold;
+	color: #2c343f !important;
+}
+</style>
+         
+          <section class="content">
+            <h2><span class="ico_search"></span> Critères de recherche</h2>
+            <!-- formulaire recherche avancée -->
+            <form method="get" action="https://ww4.yggtorrent.is/engine/search">
+                        <div class="table-responsive" style="width: 100%">
+              <table class="search-criteria">
+                <tbody>
+                <tr>
+                  <td>Nom </td>
+                  <td colspan="3"><input class="input-table" name="name" type="text" value="1080" placeholder="Rechercher dans les noms des torrents (Ex : Titanic, Avatar, Terminator)"  > </td>
+                </tr>
+                <tr>
+                  <td>Description</td>
+                  <td colspan="3"><input class="input-table" name="description" type="text"  value="" placeholder="Rechercher dans les descriptions des torrents (Ex : Brad pitt, VFF, AAC)"></td>
+                </tr>
+                <tr>
+                  <td>Fichier</td>
+                  <td colspan="3"><input class="input-table" name="file" type="text"  value="" placeholder="Rechercher dans les fichiers des torrents (Ex : epub, mkv, avi)"></td>
+                </tr>
+                <tr>
+                  <td>Uploader</td>
+                  <td colspan="3"><input class="input-table" name="uploader" type="text"  value="" placeholder="Rechercher les torrents d'un uploader (Ex : Fred2683, Apolowindow)"></td>
+                </tr>
+      
+                 <tr id="adv_search_cat">
+                  <td>Catégorie</td>
+                  <td>
+                  <!-- Catégorie -->
+                    <select id="categorie" name="category">
+                        <option value="all" selected>-- Toutes les catégories --</option>
+                        <option value="2145" data-categorie="FilmVidéo">Film/Vidéo</option>
+                        <option value="2139" data-categorie="Audio">Audio</option>
+                        <option value="2144" data-categorie="Application">Application</option>
+                        <option value="2142" data-categorie="Jeu-vidéo">Jeu vidéo</option>
+                        <option value="2140" data-categorie="eBook">eBook</option>
+                        <option value="2141" data-categorie="Emulation">Emulation</option>
+                        <option value="2143" data-categorie="GPS">GPS</option>
+                                            </select>
+                  </td>
+                  <td id="subcat_item" class="adv_search_option" style="display: none">Sous-catégorie</td>
+                  <td id="subcat_item" style="display: none">
+                   <div id="sub_categorie_container">
+                   <!-- Sous catégories -->
+                      <select id="sub_categories_FilmVidéo">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                      
+                            <option value="2178">Animation</option>
+                            <option value="2179">Animation Série</option>
+                            <option value="2180">Concert</option>
+                            <option value="2181">Documentaire</option>
+                            <option value="2182">Emission TV</option>
+                            <option value="2183">Film</option>
+                            <option value="2184">Série TV</option>
+                            <option value="2185">Spectacle</option>
+                            <option value="2186">Sport</option>
+                            <option value="2187">Vidéo-clips</option>
+                        </select>
+                        <select id="sub_categories_Audio" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                          
+                            <option value="2147">Karaoké</option>
+                            <option value="2148">Musique</option>
+                            <option value="2150">Podcast Radio</option>
+                            <option value="2149">Samples</option>
+                        </select>
+                        <select id="sub_categories_Application" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                   
+                            <option value="2177">Autre</option>
+                            <option value="2176">Formation</option>
+                            <option value="2171">Linux</option>
+                            <option value="2172">MacOS</option>
+                            <option value="2174">Smartphone</option>
+                            <option value="2175">Tablette</option>
+                            <option value="2173">Windows</option>
+                        </select>
+                       <select id="sub_categories_Jeu-vidéo" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                    
+                            <option value="2167">Autre</option>
+                            <option value="2159">Linux</option>
+                            <option value="2160">MacOS</option>
+                            <option value="2162">Microsoft</option>
+                            <option value="2163">Nintendo</option>
+                            <option value="2165">Smartphone</option>
+                            <option value="2164">Sony</option>
+                            <option value="2166">Tablette</option>
+                            <option value="2161">Windows</option>
+                        </select>
+                        <select id="sub_categories_eBook" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                        
+                            <option value="2151">Audio</option>
+                            <option value="2152">Bds</option>
+                            <option value="2153">Comics</option>
+                            <option value="2154">Livres</option>
+                            <option value="2155">Mangas</option>
+                            <option value="2156">Presse</option>
+                        </select>
+                        <select id="sub_categories_Emulation" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                        
+                            <option value="2157">Emulateurs</option>
+                            <option value="2158">Roms</option>
+                        </select>
+                        <select id="sub_categories_GPS" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                  
+                            <option value="2168">Applications</option>
+                            <option value="2169">Cartes</option>
+                            <option value="2170">Divers</option>
+                        </select>
+                        <select id="sub_categories_XXX" style="display: none;">
+                            <option value="all" selected>-- Toutes les sous-catégories --</option>                     
+                            <option value="2189">Films</option>
+                            <option value="2190">Hentai</option>
+                            <option value="2191">Images</option>
+                        </select>
+                    </div>
+                    <input name="sub_category" type="hidden">
+                </td>
+                </tr>
+                <!-- Options avancées de recherche -->
+                <tr>
+                  <td class="alone" colspan="4">
+                    <button class="solo" type="submit" name="do" value="search">Recherche</button>
+                  </td>
+                </tr>
+              </tbody></table>
+            </div>
+            </form>
+          </section>
+
+
+
+ <section class="content">
+           <center><ul class="pagination"><li class="active"><a href="">1</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=50" data-ci-pagination-page="2">2</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=100" data-ci-pagination-page="3">3</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=150" data-ci-pagination-page="4">4</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=200" data-ci-pagination-page="5">5</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=250" data-ci-pagination-page="6">6</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=300" data-ci-pagination-page="7">7</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=350" data-ci-pagination-page="8">8</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=400" data-ci-pagination-page="9">9</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=50" data-ci-pagination-page="2" rel="next">suivante &rarr;</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=500" data-ci-pagination-page="11">dernière &raquo;</a></li></ul></center>
+        </section>
+
+       
+   <section class="content" id="#torrents">
+    <h2>Résultats de recherche <font style="float: right">548 résultats trouvés en 0.001 s</font></h2>
+          <!-- Start table -->
+          <div class="table-responsive results" style="width: 100%">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 82px;" class="no">Type</th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=name">Nom</a></th>
+<th class="no">NFO</th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=name">Comm.</th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=publish_date">Age</th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=size">Taille</th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=completed">Compl.</a></th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=seed">Seed</th>
+<th><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&order=desc&sort=leech">Leech</th>
+</tr>
+</thead>
+<tbody>
+          <!--- listing torrents -->
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/242482-beethoven-complete+symphonies-opera+de+paris-philippe+jordan-2016full+blu-ray-pcm+et+dts-1080-h264">Beethoven-Complete Symphonies-Opera de Paris-Philippe Jordan-2016[Full Blu-ray-Pcm et DTS-1080-H264] 
+
+
+</td>
+<td><a target="242482" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1526437746</div><span class="ico_clock-o"></span> 3 mois </td>
+<td>80.22Go</td>
+<td>39</td>
+<td>5</td>
+<td>2</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/279978-jimi+hendrix+-+live+at+monterey+1967+blu-ray+full+1080+dts+hd-ma+pcm+anglais+diablo">Jimi Hendrix - Live at Monterey 1967 Blu-Ray Full 1080 DTS HD-MA PCM Anglais Diablo 
+
+
+</td>
+<td><a target="279978" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1531557968</div><span class="ico_clock-o"></span> 1 mois </td>
+<td>21.02Go</td>
+<td>21</td>
+<td>8</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2179</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2179"><span class="tag_subcat_2179"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/animation-série/45058-mouk+intégrale+saison+12+mp4+hd+light+1080">Mouk Intégrale  (saison 1&2) mp4 HD Light 1080 
+
+
+</td>
+<td><a target="45058" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501402351</div><span class="ico_clock-o"></span> 1 an </td>
+<td>12.28Go</td>
+<td>268</td>
+<td>15</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2148</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2148"><span class="tag_subcat_2148"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/audio/musique/111919-bach+-+lart+de+la+fugue+bwv+1080+andré+isoir+flac">Bach - L'Art de la fugue BWV 1080 | André Isoir [FLAC] 
+
+
+</td>
+<td><a target="111919" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>0 <span class="ico_comment"></span></td>
+<td><div class="hidden">1509193206</div><span class="ico_clock-o"></span> 9 mois </td>
+<td>339.28Mo</td>
+<td>64</td>
+<td>3</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/262420-queen+the+freddie+mercury+-+tribute+concert+1992+blu-ray+full+1080+dts+hd-ma+pcm+multi+diablo">Queen + The Freddie Mercury - Tribute Concert 1992 Blu-Ray Full 1080 DTS HD-MA PCM Multi Diablo 
+
+
+</td>
+<td><a target="262420" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>0 <span class="ico_comment"></span></td>
+<td><div class="hidden">1528948247</div><span class="ico_clock-o"></span> 2 mois </td>
+<td>45.18Go</td>
+<td>39</td>
+<td>7</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/268875-martha+argerich+et+mischa+maisky-luzerner+sinfonieorchester+n+jarvi-2011bdrip+h264+avc+1080-dts+pcm">Martha Argerich et Mischa Maisky-Luzerner Sinfonieorchester (N. Jarvi)-2011[BDRIP H264 AVC 1080-DTS PCM] 
+
+
+</td>
+<td><a target="268875" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>0 <span class="ico_comment"></span></td>
+<td><div class="hidden">1529782172</div><span class="ico_clock-o"></span> 1 mois </td>
+<td>22.17Go</td>
+<td>7</td>
+<td>3</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/261607-sting+-+live+at+the+olympia+paris+2017+blu-ray+full+1080+dts-+hdma+anglais+diablo">Sting - Live At The Olympia Paris 2017 Blu-Ray Full 1080 DTS- HDMA Anglais Diablo 
+
+
+</td>
+<td><a target="261607" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>2 <span class="ico_comment"></span></td>
+<td><div class="hidden">1528819881</div><span class="ico_clock-o"></span> 2 mois </td>
+<td>35.89Go</td>
+<td>35</td>
+<td>4</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2181</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2181"><span class="tag_subcat_2181"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/documentaire/261759-pink+floyd+-+the+making+of+the+dark+side+of+the+moon+2001+blu-ray+full+1080+pcm+multi+diablo">Pink Floyd - The Making Of The Dark Side Of The Moon 2001 Blu-Ray Full 1080 PCM Multi Diablo  
+
+
+</td>
+<td><a target="261759" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1528840665</div><span class="ico_clock-o"></span> 2 mois </td>
+<td>22.35Go</td>
+<td>36</td>
+<td>5</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/276932-paul+rodgers+-+free+spirit+2018+blu-ray+full+1080+dts-hdma+pcm+anglais+multi+diablo">Paul Rodgers - Free Spirit 2018 Blu-Ray Full 1080 DTS-HDMA PCM Anglais Multi Diablo 
+
+
+</td>
+<td><a target="276932" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>4 <span class="ico_comment"></span></td>
+<td><div class="hidden">1531028397</div><span class="ico_clock-o"></span> 1 mois </td>
+<td>28.68Go</td>
+<td>16</td>
+<td>2</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2181</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2181"><span class="tag_subcat_2181"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/documentaire/285666-pink+floyd+-+the+story+of+wish+you+were+here+2012+blu-ray+full+1080+dts-hdma+multi+diablo">Pink Floyd - The Story of Wish You Were Here 2012 Blu-Ray Full 1080 DTS-HDMA Multi Diablo 
+
+
+</td>
+<td><a target="285666" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>1 <span class="ico_comment"></span></td>
+<td><div class="hidden">1532538879</div><span class="ico_clock-o"></span> 22 jours </td>
+<td>18.09Go</td>
+<td>21</td>
+<td>5</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2185</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2185"><span class="tag_subcat_2185"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/spectacle/247011-verdi-simon+boccanegra+teatro+alla+scala-2010bdrip-avc+hd4+1-1080-dts+pcm">Verdi-Simon Boccanegra (Teatro alla Scala)-2010[BDRIP-AVC HD4.1-1080-DTS PCM] 
+
+
+</td>
+<td><a target="247011" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>2 <span class="ico_comment"></span></td>
+<td><div class="hidden">1526995949</div><span class="ico_clock-o"></span> 2 mois </td>
+<td>20.54Go</td>
+<td>18</td>
+<td>2</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2185</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2185"><span class="tag_subcat_2185"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/spectacle/268329-mozart-requiem-mariss+jansons-2017-vostfrbdrip+h264+mpeg4+avc+1080+dts+pcm">Mozart-Requiem-Mariss Jansons-2017-VOSTFR[BDRIP H264 MPEG4 AVC 1080 DTS PCM] 
+
+
+</td>
+<td><a target="268329" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>3 <span class="ico_comment"></span></td>
+<td><div class="hidden">1529723579</div><span class="ico_clock-o"></span> 1 mois </td>
+<td>13.63Go</td>
+<td>37</td>
+<td>8</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2184</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2184"><span class="tag_subcat_2184"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/série-tv/56638-justified+s04+french+1080+maxie">Justified.S04.French.1080.maxie 
+
+
+</td>
+<td><a target="56638" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1502262706</div><span class="ico_clock-o"></span> 1 an </td>
+<td>37.26Go</td>
+<td>36</td>
+<td>3</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2184</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2184"><span class="tag_subcat_2184"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/série-tv/72224-justified+s05+french+1080+maxie">Justified.S05.French.1080.Maxie 
+
+
+</td>
+<td><a target="72224" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>14 <span class="ico_comment"></span></td>
+<td><div class="hidden">1503783355</div><span class="ico_clock-o"></span> 11 mois </td>
+<td>40.97Go</td>
+<td>33</td>
+<td>2</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2180</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2180"><span class="tag_subcat_2180"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/concert/295285-l+a+guns+-+made+in+milan+2016+blu-ray+full+1080+ac-3+5+1+pcm+anglais+diablo">L. A. Guns - Made In Milan 2016 Blu-Ray Full 1080 AC-3.5.1 PCM Anglais Diablo  
+
+
+</td>
+<td><a target="295285" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>0 <span class="ico_comment"></span></td>
+<td><div class="hidden">1534226263</div><span class="ico_clock-o"></span> 3 jours </td>
+<td>13.58Go</td>
+<td>5</td>
+<td>4</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/9661-saw+hexalogie+truefrench+blu-ray+1080+x265+hevc+dts-es+6+1-starlighter">SAW.Hexalogie.TRUEFRENCH.Blu-Ray.1080.x265.HEVC.DTS-ES.6.1-STARLIGHTER 
+
+
+</td>
+<td><a target="9661" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1499735475</div><span class="ico_clock-o"></span> 1 an </td>
+<td>26.43Go</td>
+<td>300</td>
+<td>9</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2185</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2185"><span class="tag_subcat_2185"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/spectacle/245941-verdi-nabucco-metropolitan+opera-levine-vostfr-2017-hdtv-mpeg2-ts-1080-ac3">Verdi-Nabucco-Metropolitan Opera-Levine-Vostfr-2017-[HDTV-MPEG2-TS-1080-AC3] 
+
+
+</td>
+<td><a target="245941" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1526862885</div><span class="ico_clock-o"></span> 2 mois </td>
+<td>21.79Go</td>
+<td>30</td>
+<td>4</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/27873-harry+potter+integrale+multi+vff+bluray+1080+x265+hevc-loulou">Harry.Potter.Integrale.Multi.VFF.BluRay.1080.x265.HEVC-LOULOU 
+
+
+</td>
+<td><a target="27873" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>10 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500420220</div><span class="ico_clock-o"></span> 1 an </td>
+<td>40.69Go</td>
+<td>781</td>
+<td>44</td>
+<td>8</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/44639-fast+and+furious+heptalogie+truefrench+bluray+1080+x265+hevc+dts">Fast and Furious Heptalogie TRUEFRENCH BluRay 1080 x265 HEVC DTS 
+
+
+</td>
+<td><a target="44639" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501362224</div><span class="ico_clock-o"></span> 1 an </td>
+<td>27.26Go</td>
+<td>399</td>
+<td>25</td>
+<td>3</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/52663-star+wars+hexalogie+multi+vff+blu-ray+1080+x265+hevc+dts-es-starlighter">Star.Wars.Hexalogie.MULTI.VFF.Blu-Ray.1080.x265.HEVC.DTS-ES-STARLIGHTER 
+
+
+</td>
+<td><a target="52663" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>23 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501976031</div><span class="ico_clock-o"></span> 1 an </td>
+<td>34.08Go</td>
+<td>724</td>
+<td>38</td>
+<td>3</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2179</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2179"><span class="tag_subcat_2179"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/animation-série/273518-ginga+eiyuu+densetsu+2018+-+saison+01+-+die+neue+these+-+kaikou+vostfr+mkv+x264aac1080">Ginga Eiyuu Densetsu (2018) - Saison 01 - Die Neue These - Kaikou VOSTFR [mkv x264][aac][1080] 
+
+
+</td>
+<td><a target="273518" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>1 <span class="ico_comment"></span></td>
+<td><div class="hidden">1530461726</div><span class="ico_clock-o"></span> 1 mois </td>
+<td>12.31Go</td>
+<td>168</td>
+<td>38</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2179</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2179"><span class="tag_subcat_2179"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/animation-série/45453-rage+of+bahamut+genesis+shingeki+no+bahamut+genesisfrench+1080-hi10p+web-dl+aac+-+azure">Rage.of.Bahamut.Genesis.(Shingeki.no.Bahamut.Genesis)FRENCH.1080-Hi10p.WEB-DL.AAC - AZURE 
+
+
+</td>
+<td><a target="45453" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501420531</div><span class="ico_clock-o"></span> 1 an </td>
+<td>4.25Go</td>
+<td>214</td>
+<td>15</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/23318-rocky+1-5+multi+vff+bluray+1080">Rocky.1-5.MULTI.VFF.BluRay.1080 
+
+
+</td>
+<td><a target="23318" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>3 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500278538</div><span class="ico_clock-o"></span> 1 an </td>
+<td>32.66Go</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/26984-die+hard+integrale+vff+blu-ray+1080+x265+hevc-loulou">Die.Hard.Integrale.VFF.Blu-Ray.1080.x265.HEVC-LOULOU 
+
+
+</td>
+<td><a target="26984" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500397152</div><span class="ico_clock-o"></span> 1 an </td>
+<td>20.75Go</td>
+<td>430</td>
+<td>16</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/91685-expendables+trilogie+multi+vff+blu-ray+1080+x265+hevc+hdaudio-starlighter">Expendables.Trilogie.MULTI.VFF.Blu-Ray.1080.x265.HEVC.HDAudio-STARLIGHTER 
+
+
+</td>
+<td><a target="91685" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>4 <span class="ico_comment"></span></td>
+<td><div class="hidden">1506109795</div><span class="ico_clock-o"></span> 10 mois </td>
+<td>24.10Go</td>
+<td>328</td>
+<td>16</td>
+<td>3</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/3862-pirates+des+caraibes+tetralogie+2003-2011+mutli+vff+bluray+1080+x265+hevc+dts-hdma-pcm-starlighter">Pirates.des.Caraibes.Tetralogie.2003-2011.MUTLI.VFF.BluRay.1080.x265.HEVC.DTS-HDMA-PCM-STARLIGHTER 
+
+
+</td>
+<td><a target="3862" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>12 <span class="ico_comment"></span></td>
+<td><div class="hidden">1499584700</div><span class="ico_clock-o"></span> 1 an </td>
+<td>45.45Go</td>
+<td>361</td>
+<td>11</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/26274-hunger+games+quadrilogie+multi+vff+blu-ray+1080+x265-hevc">Hunger.games.quadrilogie.MULTI.VFF.Blu-Ray.1080.x265-HEVC 
+
+
+</td>
+<td><a target="26274" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>4 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500376616</div><span class="ico_clock-o"></span> 1 an </td>
+<td>38.55Go</td>
+<td>493</td>
+<td>18</td>
+<td>2</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/35731-jason+bourne+tetralogie+truefrench+bluray+1080+x265+hevc+dts-starlighter">Jason.Bourne.Tetralogie.TRUEFRENCH.BluRay.1080.x265.HEVC.DTS-StARLIGHTER 
+
+
+</td>
+<td><a target="35731" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500733582</div><span class="ico_clock-o"></span> 1 an </td>
+<td>15.90Go</td>
+<td>420</td>
+<td>12</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/57932-indiana+jones+quadrilogie+multi+vff+bluray+1080+x265+hevc+dts-hdma-starlighter">Indiana.Jones.Quadrilogie.MULTI.VFF.BluRay.1080.x265.HEVC.DTS-HDMA-STARLIGHTER 
+
+
+</td>
+<td><a target="57932" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1502387792</div><span class="ico_clock-o"></span> 1 an </td>
+<td>28.40Go</td>
+<td>666</td>
+<td>44</td>
+<td>6</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/26851-fast+and+furious+heptalogie+vff+blu-ray+1080+x265+hevc-repack+loulou">Fast.And.Furious.Heptalogie.VFF.Blu-Ray.1080.x265.HEVC-Repack.LOULOU 
+
+
+</td>
+<td><a target="26851" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>3 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500393430</div><span class="ico_clock-o"></span> 1 an </td>
+<td>61.14Go</td>
+<td>300</td>
+<td>12</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/34293-retour+vers+le+futur+bttf+trilogie+multi+vff+bluray+1080+x265+hevc+dts-hdma-starlighter">Retour.vers.le.futur.BTTF.Trilogie.MULTI.VFF.BluRay.1080.x265.HEVC.DTS-HDMA-STARLIGHTER 
+
+
+</td>
+<td><a target="34293" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500669023</div><span class="ico_clock-o"></span> 1 an </td>
+<td>23.46Go</td>
+<td>293</td>
+<td>16</td>
+<td>2</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/50883-blade+trilogie+multi+vff+blu-ray+1080+x265+hevc+dts+dts-es-starlighter">Blade.Trilogie.MULTI.VFF.Blu-Ray.1080.x265.HEVC.DTS.DTS-ES-STARLIGHTER 
+
+
+</td>
+<td><a target="50883" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>9 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501854083</div><span class="ico_clock-o"></span> 1 an </td>
+<td>17.86Go</td>
+<td>412</td>
+<td>23</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/85970-retour+vers+le+futur+bttf+trilogie+truefrench+bluray+1080+x265+hevc+dts-starlighter">Retour.vers.le.futur.BTTF.Trilogie.TRUEFRENCH.BluRay.1080.x265.HEVC.DTS-STARLIGHTER 
+
+
+</td>
+<td><a target="85970" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1505391207</div><span class="ico_clock-o"></span> 11 mois </td>
+<td>13.37Go</td>
+<td>311</td>
+<td>10</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/9674-matrix+trilogie+truefrench+blu-ray+1080+x265+hevc+ac3-starlighter">Matrix.Trilogie.TRUEFRENCH.Blu-Ray.1080.x265.HEVC.AC3-STARLIGHTER 
+
+
+</td>
+<td><a target="9674" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>10 <span class="ico_comment"></span></td>
+<td><div class="hidden">1499736469</div><span class="ico_clock-o"></span> 1 an </td>
+<td>12.18Go</td>
+<td>463</td>
+<td>19</td>
+<td>2</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/25270-men+in+black+trilogie+multi+vff+blu-ray+1080+x265+hevc-starlighter">Men.in.Black.Trilogie.MULTI.VFF.Blu-Ray.1080.x265.HEVC-STARLIGHTER 
+
+
+</td>
+<td><a target="25270" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>3 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500331090</div><span class="ico_clock-o"></span> 1 an </td>
+<td>15.93Go</td>
+<td>546</td>
+<td>39</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/27128-iron-man+trilogie+vff+blu-ray+1080+x265+hevc-loulou">Iron-Man.Trilogie.VFF.Blu-Ray.1080.x265.HEVC-LOULOU 
+
+
+</td>
+<td><a target="27128" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500400755</div><span class="ico_clock-o"></span> 1 an </td>
+<td>27.29Go</td>
+<td>528</td>
+<td>16</td>
+<td>5</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/45920-taken+trilogie+truefrench+blu-ray+1080+x265+hevc+hdaudio-starlighter">Taken.Trilogie.TRUEFRENCH.Blu-Ray.1080.x265.HEVC.HDAudio-STARLIGHTER 
+
+
+</td>
+<td><a target="45920" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>9 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501438895</div><span class="ico_clock-o"></span> 1 an </td>
+<td>17.03Go</td>
+<td>443</td>
+<td>21</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2178</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2178"><span class="tag_subcat_2178"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/animation/180840-wallace+et+gromit+1989-2008+bluray+mhd-1080+vff+ac3+2+0+x264+mkv">Wallace et Gromit (1989-2008) BluRay mHD-1080 VFF AC3 2.0 x264.mkv 
+
+
+</td>
+<td><a target="180840" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>9 <span class="ico_comment"></span></td>
+<td><div class="hidden">1517763712</div><span class="ico_clock-o"></span> 6 mois </td>
+<td>4.45Go</td>
+<td>491</td>
+<td>31</td>
+<td>1</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2178</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2178"><span class="tag_subcat_2178"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/animation/196185-beavis+butt-head+se+font+lamérique+1996+br-rip+1080-hd-light-vff">Beavis & Butt-Head se font l'Amérique (1996) [BR-rip 1080-HD-Light-VFF] 
+
+
+</td>
+<td><a target="196185" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>9 <span class="ico_comment"></span></td>
+<td><div class="hidden">1519551293</div><span class="ico_clock-o"></span> 5 mois </td>
+<td>3.22Go</td>
+<td>70</td>
+<td>0</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2185</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2185"><span class="tag_subcat_2185"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/spectacle/233027-opera+les+pecheurs+de+perles+bizet+noseda+met+2016+1080+multi+avc+ac3">[OPERA] Les Pecheurs de Perles Bizet Noseda MET 2016 1080 Multi AVC AC3 
+
+
+</td>
+<td><a target="233027" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>3 <span class="ico_comment"></span></td>
+<td><div class="hidden">1524817443</div><span class="ico_clock-o"></span> 3 mois </td>
+<td>8.27Go</td>
+<td>75</td>
+<td>6</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/15385-e+t+lextra-terreste+1982+multi+vff+blu-ray+1080+x265+hevc+dts-starlighter">E.T.l'Extra-terreste.1982.MULTI.VFF.Blu-Ray.1080.x265.HEVC.DTS-STARLIGHTER 
+
+
+</td>
+<td><a target="15385" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1500036212</div><span class="ico_clock-o"></span> 1 an </td>
+<td>6.25Go</td>
+<td>440</td>
+<td>30</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/85621-8+mile+multi+vff_eng_vfq-hd-1080+2002">8 Mile Multi VFF_ENG_VFQ-HD-1080 (2002) 
+
+
+</td>
+<td><a target="85621" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>2 <span class="ico_comment"></span></td>
+<td><div class="hidden">1505342494</div><span class="ico_clock-o"></span> 11 mois </td>
+<td>2.99Go</td>
+<td>337</td>
+<td>10</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/118187-jeanne+dielman+23+quai+du+commerce+1080+bruxelles+chantal+akerman+1975+dvdrip+avc+mp3">Jeanne Dielman, 23, quai du Commerce, 1080 Bruxelles Chantal Akerman.1975.DVDRip.AVC.MP3 
+
+
+</td>
+<td><a target="118187" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1509864113</div><span class="ico_clock-o"></span> 9 mois </td>
+<td>1.95Go</td>
+<td>227</td>
+<td>10</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/177530-scooby-doo+4+films+bluray+mhd-1080+vf+ac3+x264+mkv">Scooby-Doo [4 films] BluRay mHD-1080 VF AC3 x264.mkv 
+
+
+</td>
+<td><a target="177530" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1517412736</div><span class="ico_clock-o"></span> 6 mois </td>
+<td>7.81Go</td>
+<td>503</td>
+<td>34</td>
+<td>4</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/1739-la+merditude+des+choses+2009+fr+ned+hdtv+1080+-re2-+mkv">La merditude des choses (2009) fr.ned HDTV 1080 -Re@2-.mkv 
+
+
+</td>
+<td><a target="1739" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1499327771</div><span class="ico_clock-o"></span> 1 an </td>
+<td>3.23Go</td>
+<td>420</td>
+<td>17</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/5944-la+ligne+verte+1999+multi+vff+blu-ray+1080+x265+hevc+ac3-starlighter">La.Ligne.Verte.1999.MULTI.VFF.Blu-Ray.1080.x265.HEVC.AC3-STARLIGHTER 
+
+
+</td>
+<td><a target="5944" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>3 <span class="ico_comment"></span></td>
+<td><div class="hidden">1499625429</div><span class="ico_clock-o"></span> 1 an </td>
+<td>8.24Go</td>
+<td>541</td>
+<td>19</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/9688-saw+3d+chapitre+final+directors+cut+2010+multi+vff+blu-ray+1080+2d+x265+hevc+dts-starlighter">SAW.3D.Chapitre.Final.Directors.cut.2010.MULTI.VFF.Blu-Ray.1080.2D.x265.HEVC.DTS-STARLIGHTER 
+
+
+</td>
+<td><a target="9688" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>0 <span class="ico_comment"></span></td>
+<td><div class="hidden">1499737660</div><span class="ico_clock-o"></span> 1 an </td>
+<td>5.05Go</td>
+<td>203</td>
+<td>4</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/39178-zodiac+2007+dc+multi+vff+blu-ray+1080+x265+hevc+ac3-starlighter">Zodiac.2007.DC.MULTI.VFF.Blu-Ray.1080.x265.HEVC.AC3-STARLIGHTER 
+
+
+</td>
+<td><a target="39178" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>8 <span class="ico_comment"></span></td>
+<td><div class="hidden">1501076965</div><span class="ico_clock-o"></span> 1 an </td>
+<td>5.71Go</td>
+<td>628</td>
+<td>35</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/76056-predator+ultimate+hunter+edition+1987+multi+vff+bluray+1080+x265+hevc+dts-hdma-starlighter">Predator.Ultimate.Hunter.Edition.1987.MULTI.VFF.BluRay.1080.x265.HEVC.DTS-HDMA-STARLIGHTER 
+
+
+</td>
+<td><a target="76056" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>5 <span class="ico_comment"></span></td>
+<td><div class="hidden">1504216892</div><span class="ico_clock-o"></span> 11 mois </td>
+<td>7.40Go</td>
+<td>215</td>
+<td>3</td>
+<td>0</td>
+
+</tr>
+                      
+       <tr>
+<td><div class="hidden">2183</div><a href="https://ww4.yggtorrent.is/engine/url_builder?type=query&amp;source=sub_category&amp;id=2183"><span class="tag_subcat_2183"></span></a></td>
+<td style="text-align: left;"><a href="https://ww4.yggtorrent.is/torrent/filmvidéo/film/81389-le+crabe+tambour+1976+hdtv+1080">Le Crabe Tambour.1976.HDTV.1080 
+
+
+</td>
+<td><a target="81389" id="get_nfo"><img src="https://ww4.yggtorrent.is/static/img/nfo.gif"></td>
+<td>7 <span class="ico_comment"></span></td>
+<td><div class="hidden">1504876471</div><span class="ico_clock-o"></span> 11 mois </td>
+<td>2.87Go</td>
+<td>443</td>
+<td>20</td>
+<td>0</td>
+
+</tr>
+            
+            <!-- end table -->
+     </tbody>
+</table>
+</div></div>
+</section>
+    
+            </div><!-- / column -->
+ <section class="content">
+           <center><ul class="pagination"><li class="active"><a href="">1</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=50" data-ci-pagination-page="2">2</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=100" data-ci-pagination-page="3">3</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=150" data-ci-pagination-page="4">4</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=200" data-ci-pagination-page="5">5</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=250" data-ci-pagination-page="6">6</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=300" data-ci-pagination-page="7">7</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=350" data-ci-pagination-page="8">8</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=400" data-ci-pagination-page="9">9</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=50" data-ci-pagination-page="2">suivante &rarr;</a></li><li><a href="https://ww4.yggtorrent.is/engine/search?name=1080&do=search&amp;page=500" data-ci-pagination-page="11">dernière &raquo;</a></li></ul></center>
+        </section>
+        
+        </div><!-- / row -->
+      </main>
+    </div>
+  
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>    
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    
+<footer>
+	<div class="container">
+
+		<div class="copy text-center">
+			<strong>2017-2018 YggTorrent v3.1- Aucun droit réservé </strong><br>
+			Support YggTorrent - <a href="mailto:contact@ygg.is"> contact@ygg.is </a>
+			
+			<center>
+				<img style="width:110px; margin-top:15px" src="https://ww4.yggtorrent.is/static/img/footer.png">
+				<br>
+
+			</center>
+		</div>
+
+	</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script type="text/javascript">
+
+
+	$(function(){
+
+				/* init категорий view */
+		if(!Cookies.get('hide_side_menu')) {
+			hideSidebar();
+			$(window).on('resize', function(){
+				hideSidebar();
+			}); 
+		}
+
+		function hideSidebar() {
+			$(window).width() < 1750 ? $('#cat, .back-cat').removeClass('active') : $('#cat, .back-cat').addClass('active'); 
+		}
+				
+		$('.open').on('click', function(){
+			if($('#cat').hasClass('active')){
+				Cookies.set('hide_side_menu', true, { expires: 7 });
+				$('#cat, .back-cat').removeClass('active');
+			}else{
+				Cookies.remove('hide_side_menu');
+				$('#cat, .back-cat').addClass('active');
+			}
+		});
+
+
+		window.sendNotif = function(msg,type) {
+			$.notify(msg , { type : type , allow_dismiss: true , placement: { from: "top", align: "center" },  animate: { enter: 'animated fadeInDown',exit: 'animated fadeOutUp'
+		}, delay: 3000});
+		}
+
+
+		$('li').on('click', function () {
+			if($(window).width() <= 800){
+				$('ul', this).toggle();
+			}
+		});
+
+
+		
+		
+		window.closeNav = function(){
+			$('#top').stop().animate({
+				'left': -200,
+			},150);
+			$('[data-nav]').data('nav', 'no').removeClass('ico_close').addClass('ico_navicon');
+		}
+		window.navMobile = function(a){
+			if(a == 'no'){
+				$('#top').stop().animate({
+					'left': 0,
+				},300);
+				$('[data-nav]').data('nav', 'yes').removeClass('ico_navicon').addClass('ico_close');
+			}else{
+				closeNav();
+			}
+		}       
+		window.closeUser = function(){
+			$('.panel').stop().animate({
+				'right': -200,
+			},150);
+			$('[data-user]').data('nav', 'no').removeClass('ico_close').addClass('ico_user');
+		}
+		window.userMobile = function(a){
+			if(a == 'no'){
+				$('.panel').stop().animate({
+					'right': 0,
+				},300);
+				$('[data-user]').data('nav', 'yes').removeClass('ico_user').addClass('ico_close');
+			}else{
+				closeUser();
+			}
+		}
+		$('[data-nav]').on('click', function(){
+			var a = $(this).data('nav');
+			navMobile(a);
+			closeUser();
+			return false;
+		});
+		$('[data-user]').on('click', function(){
+			var a = $(this).data('user');
+			userMobile(a);
+			closeNav();
+			return false;
+		});
+		$(document).click(function(e){
+			if(!$(e.target).is('[data-nav], [data-nav] *, #top, #top *')){
+				closeNav();
+			}
+			if(!$(e.target).is('[data-user], [data-user] *, .panel, .panel *')){
+				closeUser();
+			}
+		});
+
+
+		/****** CONNECT *****/
+
+		var h = $('html');
+		var panel = $('#connect');
+		var fV = $('.fadeconnect');
+
+		window.panelConnect = function(){
+			closeNav();
+			closeUser();
+
+			if(panel.css('opacity') == 0){
+				panel.stop().show();
+				panel.stop().animate({top: 50, opacity: 1,},300);
+				fV.stop().fadeIn(300);
+				h.stop().css({'overflow':'hidden',});
+			}else{
+				fV.stop().fadeOut(300);
+				panel.stop().animate({top: 20, opacity: 0,},300).promise().then(function(){
+					panel.stop().hide();
+					h.stop().css({'overflow':'auto',});
+				});
+			}
+		}
+
+		function hidePanelConnect()
+		{
+			fV.stop().fadeOut(300);
+			panel.stop().animate({top: 20, opacity: 0,},300).promise().then(function(){
+				panel.stop().hide();
+				h.stop().css({'overflow':'auto',});
+			});
+		}
+
+		$('[data-connect], .fadeconnect').on('click', function(){
+			panelConnect();
+			return false;
+		});
+
+		/****** NEWS *****/
+
+		$('[data-slidable] h2').on('click', function(){
+			console.log('ok');
+			var a = $(this).parent('[data-slidable]');
+			$('[data-slidable] .slidable').stop().slideUp();
+			$('[data-slidable]').attr('data-slidable', '');
+			a.children('.slidable').stop().slideDown();
+			a.attr('data-slidable', 'active');
+		});
+
+
+      // Форма входа
+      $("#user-login").on("submit",function(e) {
+      	e.preventDefault();
+      	$.ajax({
+      		type: 'POST',
+      		url: 'https://ww4.yggtorrent.is/user/login',
+      		data: new FormData(this),
+      		contentType: false,             
+      		processData:false,
+      		success: function(data) {
+      			hidePanelConnect();
+      			if(data.hasOwnProperty('target_url')) {
+      				window.location.replace(data.target_url);
+      			}
+      			else {
+      				      				$.getJSON('https://ww4.yggtorrent.is/user/ajax_usermenu', function(data) {   
+      					$('#top_panel').html(data.html);
+      					sendNotif('Heureux de vous revoir <strong>' + data.nickname + ' !</strong !','success');
+      				});
+      				      			}
+      		} ,
+      		error : function(e, xhr, s) {
+      			let error = e.responseJSON;
+      			if(e.status == 403 && typeof error !== 'undefined') {
+					$('#ban_msg_r').hide();
+					let ban_msg = $('#ban_msg_login');
+					ban_msg.find('.ban_duration').html(error.duration);
+					ban_msg.find('#ban_reason').attr('href','https://ww4.yggtorrent.is/user/ban_reason?h=' + error.reason_key);
+					ban_msg.show();
+      			}
+      			else if(e.status == 403) {
+      				$('#login_msg_pass').hide();             	
+      				$('#login_msg_mail').show();
+      			}
+      			else if(e.status == 401) {
+      				$('#login_msg_mail').hide();
+      				$('#login_msg_pass').show();
+      				$('#resetpass').show();
+      			} else { 
+      				alert('Erreur ajax');	
+      			}
+
+
+      		}
+      	});
+      });
+
+      
+
+      
+  });
+</script>
+
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
+
+
+        <script type="text/javascript">
+      $(function(){
+
+
+ 	   $(document).on('click','a#get_nfo',function(){
+      		$.get('https://ww4.yggtorrent.is/engine/get_nfo?torrent=' + $(this).attr('target'), function(nfo) {
+		    $('#nfo').html(nfo);
+		   $('#nfoModal').modal('show')
+			});
+		});
+
+        var sub_category_display = false;
+        var options_init = false;
+
+        $(document).on('change','#categorie',function()
+        {
+          $('input[name="sub_category"]').val('all');  
+          if(this.value == 'all')
+          {
+           // $('input[name="sub_category"]').val('all');  
+            $('td#subcat_item').hide(); 
+            clearOptions();            
+          }
+          else
+          {
+           if(!sub_category_display) 
+            {
+             // console.log('ok')
+              $('td#subcat_item').show();
+              sub_category_display = true;  
+            }
+            $('#sub_categorie_container .select2-container').hide();
+            var sub_category_id = $('option:selected', this).attr('data-categorie');
+            var selected_sub_category = $('#sub_categories_' + sub_category_id);
+            selected_sub_category.next(".select2-container").show();
+            selected_sub_category.show();
+            clearOptions();
+          }          
+        });
+
+        $(document).on('change','select[id^="sub_categories_"]',function()
+        {
+          if(this.value == 'all')
+          {
+           $('input[name="sub_category"]').val('all');  
+           //$('td#subcat_item').hide();
+           clearOptions();
+          }
+          else
+          {
+            $('input[name="sub_category"]').val(this.value);
+            clearOptions();
+            setOptions(this.value);
+            console.log(this.value);
+          }
+        });
+
+        function setOptions(sub_category) 
+        {
+          $.ajax
+          ({
+            type: 'GET',
+            dataType: 'json',
+            url: 'https://ww4.yggtorrent.is/engine/category_fields?id=' + sub_category,
+            timeout: 1500,
+            success: function(data)
+            {
+              if(Array.isArray(data))
+              {
+                var options_html = '';
+                data.forEach(function(op) {
+                  var template = $('#option_field').html();
+                  Mustache.parse(template);  
+                  template = Mustache.render(template, op);
+                  options_html += template;
+                });
+              }
+              else
+              {
+                  var template = $('#option_field').html();
+                  Mustache.parse(template);  
+                  options_html = Mustache.render(template, data);
+              }
+              $('#adv_search_cat').after(options_html);                
+              setIndex();
+              $('select:not(#adv_search_cat select)').select2({placeholder: '-- Sélection --'}); 
+              if(options_init == false)
+              {
+                setInitOptions();  
+              }
+            }
+          });
+        }
+
+        function clearOptions()
+        {
+          $('[name^="option_"]').closest('tr').remove();              
+        }
+
+        function setIndex()
+        {
+          $('[name^="option_"]').each(function(){
+            var options = $(this).find('option');
+            options.each(function(index,el){
+              if(index > 0)
+              {
+                $(this).attr('value',$(this).index());
+              }
+            });
+          });
+        }
+
+
+                
+        /* Conservation des paramètres pour la recherche avancée */
+        function setInitOptions() 
+        {
+          options_init = true;
+        }
+
+      });
+    </script>
+
+  </body>
+</html>
