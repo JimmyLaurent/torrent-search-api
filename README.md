@@ -135,13 +135,13 @@ The result is an array of torrents sorted by seeders with more or less propertie
 // Query: 1080
 // Category: Movies (optional)
 // Limit: 20 (optional)
-const torrents = await torrentSearch.search('1080', 'Movies', 20);
+const torrents = await TorrentSearchApi.search('1080', 'Movies', 20);
 
 // Search with given providers
 // query: 1080
 // category: Movies (optional)
 // limit: 20 (optional)
-const torrents = await torrentSearch.search(['IpTorrents', 'Torrent9'], '1080', 'Movies', 20);
+const torrents = await TorrentSearchApi.search(['IpTorrents', 'Torrent9'], '1080', 'Movies', 20);
 
 ```
 
