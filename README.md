@@ -1,5 +1,7 @@
 # TorrentSearchApi
 
+[![npm](https://img.shields.io/npm/dm/torrent-search-api.svg?maxAge=2592000)](https://npm-stat.com/charts.html?package=torrent-search-api)
+
 Yet another node torrent search api based on x-ray.
 
 ## Install
