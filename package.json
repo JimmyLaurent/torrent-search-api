@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.7",
-    "cloudscraper": "^1.5.0",
+    "cloudscraper": "^3.1.0",
     "lodash": "^4.17.4",
     "request": "^2.79.0",
     "string-format": "^0.5.0",
