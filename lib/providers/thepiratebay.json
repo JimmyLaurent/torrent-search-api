@@ -1,6 +1,6 @@
 {
   "name": "ThePirateBay",
-  "baseUrl": "https://thepiratebay.red",
+  "baseUrl": "https://pirateproxy.id",
   "searchUrl": "/search/{query}/0/7/{cat}",
   "categories": {
      "All": "",
