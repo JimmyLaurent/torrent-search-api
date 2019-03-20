@@ -17,6 +17,7 @@
     "itemSelectors": {
        "title": ".tli > a@text",
        "peers": ".ly@text | int",
+       "seeds": ".sy@text | int",
        "time": ".tli + td@text",
        "size": ".tli + td + td@text",
        "magnet": "a[title=\"Magnet link\"]@href",

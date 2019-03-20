@@ -85,9 +85,10 @@ function createProviderHtmlSnapshotTest(
     //     );
 
     const { itemSelectors } = api.providers[0];
+    console.log(torrents[0])
     Object.keys(itemSelectors).map(selectorkey =>
       assert(
-        torrents[0][selectorkey],
+        torrents[0][selectorkey] !== undefined,
         `${selectorkey} is missing in ${provider.name}`
       )
     );
