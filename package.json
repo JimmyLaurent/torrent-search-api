@@ -1,6 +1,6 @@
 {
   "name": "torrent-search-api",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description":
     "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePriatebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Extratorrent)",
   "main": "index.js",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.7",
-    "cloudscraper": "^3.2.0",
+    "cloudscraper": "3.2.0",
     "lodash": "^4.17.11",
     "request": "^2.79.0",
     "string-format": "^0.5.0",
