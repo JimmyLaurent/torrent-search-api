@@ -1,6 +1,6 @@
 {
     "name": "IpTorrents",
-    "baseUrl": "https://iptorrents.eu",
+    "baseUrl": "https://iptorrents.com",
     "requireAuthentification": true,
     "supportCookiesAuthentification": true,
     "supportCredentialsAuthentification": true,
