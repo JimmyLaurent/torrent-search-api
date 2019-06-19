@@ -2,6 +2,9 @@
   "name": "Torrentz2",
   "baseUrl": "https://torrentz2.eu",
   "searchUrl": "/?f={query}",
+  "top": {
+   "All": "/search?f=&safe=0"
+ },
   "categories": {
      "All": ""
   },

@@ -2,6 +2,15 @@
   "name": "ThePirateBay",
   "baseUrl": "https://pirateproxy.id",
   "searchUrl": "/search/{query}/0/7/{cat}",
+  "top": {
+   "Movies": "top/201",
+   "Audio": "top/100",
+   "Video": "top/200",
+   "Applications": "top/300",
+   "Games": "top/400",
+   "Porn": "top/500",
+   "Other": "top/600"
+ },
   "categories": {
      "All": "",
      "Audio": "100",
