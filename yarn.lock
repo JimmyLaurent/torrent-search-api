@@ -626,7 +626,7 @@ cliui@^4.0.0:
     strip-ansi "^4.0.0"
     wrap-ansi "^2.0.0"
 
-cloudscraper@^3.2.0:
+cloudscraper@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/cloudscraper/-/cloudscraper-3.2.0.tgz#ab18ce0e224c6601616e1ef41b0d713c6f9ce198"
   dependencies:
