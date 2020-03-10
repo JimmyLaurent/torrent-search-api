@@ -1,23 +1,24 @@
 {
     "name": "KickassTorrents",
     "baseUrl": "https://katcr.co",
-    "searchUrl": "/new/search-torrents.php?search={query}&sort=seeders&order=desc",
+    "searchUrl": "/katsearch/page/1/{query}",
     "categories": {
        "All": "",
-       "Movies": "url:/new/torrents.php?parent_cat=Movies",
-       "TV": "url:/new/torrents.php?parent_cat=TV",
-       "Music": "url:/new/torrents.php?parent_cat=Music",
-       "Games": "url:/new/torrents.php?parent_cat=Games",
-       "Books": "url:/new/torrents.php?parent_cat=Books",
-       "Applications": "url:/new/torrents.php?parent_cat=Applications",
-       "Anime": "url:/new/torrents.php?parent_cat=Anime"
+       "Movies": "url:/category/movies/page/1",
+       "TV": "url:/category/tv/page/1",
+       "Music": "url:/category/music/page/1",
+       "Games": "url:/category/games/page/1",
+       "Books": "url:/category/books/page/1",
+       "Applications": "url:/category/applications/page/1",
+       "Anime": "url:/category/anime/page/1"
     },
     "defaultCategory": "All",
     "resultsPerPageCount": 15,
-    "itemsSelector": ".ttable_headinner tr",
+    "itemsSelector": ".tab_content tbody tr",
     "itemSelectors": [
        {
-          "title": ".cellMainLink@text",
+          "eee": "@html",
+          "title": ".torrents_table__torrent_name .text--left@text",
           "time": "td:nth-child(3)@text",
           "seeds": "td:nth-child(4)@text | replace:\"--\",0 | int",
           "peers": "td:nth-child(5)@text | replace:\"--\",0 | int",
