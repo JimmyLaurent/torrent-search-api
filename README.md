@@ -22,6 +22,9 @@ npm install torrent-search-api
 - KickassTorrents
 - Rarbg
 - TorrentProject
+- Yts
+- Limetorrents
+- Eztv
 
 ## Features
 

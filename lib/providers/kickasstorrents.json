@@ -17,7 +17,6 @@
     "itemsSelector": ".tab_content tbody tr",
     "itemSelectors": [
        {
-          "eee": "@html",
           "title": ".torrents_table__torrent_name .text--left@text",
           "time": "td:nth-child(3)@text",
           "seeds": "td:nth-child(4)@text | replace:\"--\",0 | int",

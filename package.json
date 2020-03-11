@@ -1,7 +1,7 @@
 {
   "name": "torrent-search-api",
   "version": "2.1.0",
-  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePriatebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Extratorrent)",
+  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePiratebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Yts, Limetorrents, Eztv)",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -23,7 +23,10 @@
     "tpb",
     "kickasstorrents",
     "rarbg",
-    "torrentproject"
+    "torrentproject",
+    "yts",
+    "eztv",
+    "limetorrents"
   ],
   "author": "Jimmy Laurent",
   "license": "MIT",
@@ -58,6 +61,7 @@
     "output": "./test-results/junit.xml"
   },
   "prettier": {
+    "printWidth": 100,
     "singleQuote": true,
     "trailingComma": "none",
     "parser": "flow",
