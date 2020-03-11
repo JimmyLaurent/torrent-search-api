@@ -1,31 +1,29 @@
 {
     "name": "KickassTorrents",
     "baseUrl": "https://katcr.co",
-    "searchUrl": "/new/search-torrents.php?search={query}&sort=seeders&order=desc",
+    "searchUrl": "/katsearch/page/1/{query}",
     "categories": {
        "All": "",
-       "Movies": "url:/new/torrents.php?parent_cat=Movies",
-       "TV": "url:/new/torrents.php?parent_cat=TV",
-       "Music": "url:/new/torrents.php?parent_cat=Music",
-       "Games": "url:/new/torrents.php?parent_cat=Games",
-       "Books": "url:/new/torrents.php?parent_cat=Books",
-       "Applications": "url:/new/torrents.php?parent_cat=Applications",
-       "Anime": "url:/new/torrents.php?parent_cat=Anime"
+       "Movies": "url:/category/movies/page/1",
+       "TV": "url:/category/tv/page/1",
+       "Music": "url:/category/music/page/1",
+       "Games": "url:/category/games/page/1",
+       "Books": "url:/category/books/page/1",
+       "Applications": "url:/category/applications/page/1",
+       "Anime": "url:/category/anime/page/1"
     },
     "defaultCategory": "All",
-    "resultsPerPageCount": 15,
-    "itemsSelector": ".ttable_headinner tr",
-    "itemSelectors": [
-       {
-          "title": ".cellMainLink@text",
-          "time": "td:nth-child(3)@text",
-          "seeds": "td:nth-child(4)@text | replace:\"--\",0 | int",
-          "peers": "td:nth-child(5)@text | replace:\"--\",0 | int",
-          "size": "td:nth-child(2)@text",
-          "link": "a[title=\"Download torrent file\"]@href",
-          "desc": ".cellMainLink@href"
-       }
-    ],
-    "paginateSelector": ".pages a:not([href*=\"page=0\"])@href",
-    "torrentDetailsSelector": "#tab-main-description@html"
+    "resultsPerPageCount": 25,
+    "itemsSelector": "tbody tr",
+    "itemSelectors": {
+      "title": ".torrents_table__torrent_title@text | trim",
+      "time": "td[data-title=\"Age\"]",
+      "seeds": "td[data-title=\"Seed\"] | int",
+      "peers": "td[data-title=\"Leech\"] | int",
+      "size": "td[data-title=\"Size\"]",
+      "link": "a[title=\"Download torrent file\"]@href",
+      "desc": ".torrents_table__torrent_title@href"
+    },
+    "paginateSelector": "a:contains(Next)@href",
+    "torrentDetailsSelector": ".col@html"
  }

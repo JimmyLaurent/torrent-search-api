@@ -1,8 +1,7 @@
 {
   "name": "torrent-search-api",
-  "version": "2.0.10",
-  "description":
-    "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePriatebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Extratorrent)",
+  "version": "2.1.0",
+  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePiratebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Yts, Limetorrents, Eztv)",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -24,7 +23,10 @@
     "tpb",
     "kickasstorrents",
     "rarbg",
-    "torrentproject"
+    "torrentproject",
+    "yts",
+    "eztv",
+    "limetorrents"
   ],
   "author": "Jimmy Laurent",
   "license": "MIT",
@@ -33,23 +35,22 @@
     "url": "git://github.com/JimmyLaurent/torrent-search-api.git"
   },
   "dependencies": {
-    "bluebird": "^3.4.7",
-    "cloudscraper": "3.2.0",
-    "lodash": "^4.17.11",
-    "request": "^2.79.0",
+    "cloudscraper": "^4.6.0",
+    "lodash": "^4.17.15",
+    "request": "^2.88.2",
     "string-format": "^0.5.0",
     "x-ray-scraper": "^3.0.5"
   },
   "devDependencies": {
     "@types/jest": "^22.1.3",
     "eslint": "^4.9.0",
-    "nock": "^9.1.6",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.7.0",
     "install": "^0.10.4",
     "jest": "^22.4.0",
     "jest-junit": "^3.6.0",
     "lint-staged": "^6.1.1",
+    "nock": "^9.1.6",
     "prettier": "^1.10.2"
   },
   "jest": {
@@ -60,6 +61,7 @@
     "output": "./test-results/junit.xml"
   },
   "prettier": {
+    "printWidth": 100,
     "singleQuote": true,
     "trailingComma": "none",
     "parser": "flow",

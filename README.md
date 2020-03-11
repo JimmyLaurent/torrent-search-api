@@ -10,18 +10,6 @@ Yet another node torrent search api based on x-ray.
 npm install torrent-search-api
 ```
 
-## Upgrade from version 1
-
-```js
-// Replace
-const TorrentSearchApi = require('torrent-search-api');
-const torrentSearch = new TorrentSearchApi();
-
-// With
-const torrentSearch = require('torrent-search-api');
-
-```
-
 ## Supported providers
 
 - TorrentLeech: cookie authentification
@@ -34,7 +22,9 @@ const torrentSearch = require('torrent-search-api');
 - KickassTorrents
 - Rarbg
 - TorrentProject
-- ExtraTorrent
+- Yts
+- Limetorrents
+- Eztv
 
 ## Features
 
@@ -252,4 +242,4 @@ TorrentSearchApi.overrideConfig(providerName, newConfig);
 
 ## License
 
-MIT © 2018 [Jimmy Laurent](https://github.com/JimmyLaurent)
+MIT © 2020 [Jimmy Laurent](https://github.com/JimmyLaurent)

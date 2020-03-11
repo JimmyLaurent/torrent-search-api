@@ -1,7 +1,8 @@
 {
   "name": "ThePirateBay",
-  "baseUrl": "https://pirateproxy.id",
-  "searchUrl": "/search/{query}/0/7/{cat}",
+  "baseUrl": "https://thepiratebay.vip",
+  "enableCloudFareBypass": true,
+  "searchUrl": "/search/{query}/1/7/0/{cat}",
   "categories": {
      "All": "",
      "Audio": "100",
