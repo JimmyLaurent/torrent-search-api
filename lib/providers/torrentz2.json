@@ -1,24 +1,20 @@
 {
   "name": "Torrentz2",
-  "baseUrl": "https://torrentz2.eu",
-  "searchUrl": "/?f={query}",
+  "baseUrl": "https://torrentzeu.org",
+  "searchUrl": "/search.php?q={query}",
   "categories": {
      "All": ""
   },
   "defaultCategory": "All",
   "resultsPerPageCount": 50,
-  "itemsSelector": "div.results dl",
+  "itemsSelector": "tbody tr",
   "itemSelectors": {
-     "title": "a",
-     "hash": "a@href | substr:21,",
-     "time": "span:nth-child(2)",
-     "size": "span:nth-child(3)",
-     "seeds": "span:nth-child(5) | int",
-     "peers": "span:nth-child(4) | int",
-     "magnet": "a@href | substr:21, | format:magnet:?xt=urn:btih:{0}",
-     "link": "a@href | substr:21, | format:http://itorrents.org/torrent/{0}.torrent"
+     "title": "td:nth-child(1) span",
+     "size": "span:nth-child(4)",
+     "seeds": "span:nth-child(2) | int",
+     "peers": "span:nth-child(3) | int",
+     "magnet": ".magnet-link@href"
   },
-  "paginateSelector": "a:contains(»)@href",
-  "torrentDetailsSelector": "td[class*=\"frame\"]:nth-child(1)@html",
+  "paginateSelector": "a:contains(Next)@href",
   "enableCloudFareBypass": true
 }

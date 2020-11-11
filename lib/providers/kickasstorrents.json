@@ -1,6 +1,6 @@
 {
     "name": "KickassTorrents",
-    "baseUrl": "https://katcr.co",
+    "baseUrl": "https://katcr.ch",
     "searchUrl": "/katsearch/page/1/{query}",
     "categories": {
        "All": "",
