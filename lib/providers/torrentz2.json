@@ -6,7 +6,7 @@
      "All": ""
   },
   "defaultCategory": "All",
-  "resultsPerPageCount": 50,
+  "resultsPerPageCount": 20,
   "itemsSelector": "tbody tr",
   "itemSelectors": {
      "title": "td:nth-child(1) span",
