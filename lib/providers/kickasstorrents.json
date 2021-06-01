@@ -1,7 +1,7 @@
 {
     "name": "KickassTorrents",
-    "baseUrl": "https://katcr.co",
-    "searchUrl": "/katsearch/page/1/{query}",
+    "baseUrl": "https://kickasstorrents.cr",
+    "searchUrl": "/search/{query}/page/1",
     "categories": {
        "All": "",
        "Movies": "url:/category/movies/page/1",
