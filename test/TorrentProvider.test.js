@@ -23,9 +23,7 @@ describe('Torrent provider', () => {
     const provider = createProviderInstance();
     const url = provider.getUrl();
 
-    expect(url).toBe(
-      'http://www.torrent.com/engine/search?q=&order=desc&sort=seed&category=films'
-    );
+    expect(url).toBe('http://www.torrent.com/engine/search?q=&order=desc&sort=seed&category=films');
   });
 
   it('[getUrl] should return custom url when "url:/" tag is given', () => {

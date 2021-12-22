@@ -4,7 +4,6 @@ const path = require('path');
 const ProviderManager = require('../../lib/ProviderManager');
 const TorrentProvider = require('../../lib/TorrentProvider');
 
-
 const assert = require('assert');
 
 function logMatch(/* message */) {
@@ -21,18 +20,15 @@ function mockNextRequest(responseFilePath, queryName) {
   const content = readFileSync(responseFilePath, 'utf8');
 
   nock(/[0-9a-zA-Z]{1,}/)
-    .log(matchingUri => logMatch(`${queryName} : ${matchingUri}`))
+    .log((matchingUri) => logMatch(`${queryName} : ${matchingUri}`))
     .get(/[0-9a-zA-Z]{0,}/)
     .reply(200, content, { 'content-type': 'text/html' });
 }
 
-function mockCookieLoginRequest(
-  cookie = ['uid=XXX;', 'pass=XXX;'],
-  queryName = 'Login request'
-) {
+function mockCookieLoginRequest(cookie = ['uid=XXX;', 'pass=XXX;'], queryName = 'Login request') {
   nock(/[0-9a-zA-Z]{1,}/)
-    .log(matchingUri => logMatch(`${queryName} : ${matchingUri}`))
-    .post(/[0-9a-zA-Z]{0,}/, body => {
+    .log((matchingUri) => logMatch(`${queryName} : ${matchingUri}`))
+    .post(/[0-9a-zA-Z]{0,}/, (body) => {
       logMatch(`Login request body : ${JSON.stringify(body)}`);
       return true;
     })
@@ -41,10 +37,7 @@ function mockCookieLoginRequest(
     });
 }
 
-function createProviderHtmlSnapshotTest(
-  htmlSnapshotFilepath,
-  providerFilepath
-) {
+function createProviderHtmlSnapshotTest(htmlSnapshotFilepath, providerFilepath) {
   const api = new ProviderManager();
   const provider = api.loadProvider(providerFilepath);
 
@@ -65,11 +58,7 @@ function createProviderHtmlSnapshotTest(
     mockNextRequest(htmlSnapshotFilepath, 'Query page 1');
 
     // ACT
-    const torrents = await api.search(
-      '1080',
-      null,
-      provider.resultsPerPageCount * 2
-    );
+    const torrents = await api.search('1080', null, provider.resultsPerPageCount * 2);
 
     // ASSERT
     expect(torrents.length).toBeGreaterThan(0);
@@ -85,7 +74,7 @@ function createProviderHtmlSnapshotTest(
     //     );
 
     const { itemSelectors } = api.providers[0];
-    Object.keys(itemSelectors).map(selectorkey =>
+    Object.keys(itemSelectors).map((selectorkey) =>
       assert(
         torrents[0][selectorkey] !== undefined,
         `${selectorkey} is missing in ${provider.name}`

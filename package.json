@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:prettier": "yarn prettier --write ."
   },
   "keywords": [
     "torrent",
@@ -51,7 +52,7 @@
     "jest-junit": "^3.6.0",
     "lint-staged": "^6.1.1",
     "nock": "^9.1.6",
-    "prettier": "^1.10.2"
+    "prettier": "2.5.1"
   },
   "jest": {
     "testResultsProcessor": "jest-junit",

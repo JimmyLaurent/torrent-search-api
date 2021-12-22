@@ -1,8 +1,5 @@
 const ProviderManager = require('../lib/ProviderManager');
-const {
-  getProviderDefinition,
-  createProviderInstance
-} = require('./utils/testHelpers');
+const { getProviderDefinition, createProviderInstance } = require('./utils/testHelpers');
 const FakeProvider = require('./fake-providers/FakeProvider');
 const path = require('path');
 
@@ -44,9 +41,7 @@ describe('TorrentManager', () => {
 
   it('[loadProvider] should load provider from class file', () => {
     const providerManager = new ProviderManager();
-    providerManager.loadProvider(
-      path.join(__dirname, './fake-providers/FakeProvider')
-    );
+    providerManager.loadProvider(path.join(__dirname, './fake-providers/FakeProvider'));
 
     expect(providerManager.providers.length).toBe(1);
     expect(providerManager.providers[0].name).toBe('FakeProvider');
@@ -54,9 +49,7 @@ describe('TorrentManager', () => {
 
   it('[loadProvider] should load provider from json file', () => {
     const providerManager = new ProviderManager();
-    providerManager.loadProvider(
-      path.join(__dirname, './fake-providers/AnotherFakeProvider')
-    );
+    providerManager.loadProvider(path.join(__dirname, './fake-providers/AnotherFakeProvider'));
 
     expect(providerManager.providers.length).toBe(1);
     expect(providerManager.providers[0].name).toBe('AnotherFakeProvider');
@@ -65,9 +58,7 @@ describe('TorrentManager', () => {
   it('[loadProvider] should throw when trying to load provider from a relative filePath', () => {
     const providerManager = new ProviderManager();
 
-    expect(() =>
-      providerManager.loadProvider('./fake-providers/FakeProvider')
-    ).toThrow();
+    expect(() => providerManager.loadProvider('./fake-providers/FakeProvider')).toThrow();
   });
 
   it('[loadProviders] should load all providers in the given directory', () => {
@@ -205,16 +196,9 @@ describe('TorrentManager', () => {
     alphaProvider.search = jest.fn().mockResolvedValueOnce({ torrent: 'x' });
     betaProvider.search = jest.fn().mockResolvedValueOnce({ torrent: 'y' });
     gammaProvider.search = jest.fn().mockResolvedValueOnce(null);
-    zetaProvider.search = jest
-      .fn()
-      .mockRejectedValueOnce(new Error('search error'));
+    zetaProvider.search = jest.fn().mockRejectedValueOnce(new Error('search error'));
 
-    providerManager.loadProviders(
-      alphaProvider,
-      betaProvider,
-      gammaProvider,
-      zetaProvider
-    );
+    providerManager.loadProviders(alphaProvider, betaProvider, gammaProvider, zetaProvider);
     providerManager.enablePublicProviders();
 
     const results = await providerManager.search('1080');
@@ -236,11 +220,7 @@ describe('TorrentManager', () => {
     betaProvider.search = jest.fn().mockResolvedValueOnce({ torrent: 'y' });
     gammaProvider.search = jest.fn().mockResolvedValueOnce({ torrent: 'z' });
 
-    providerManager.loadProviders(
-      alphaProvider,
-      betaProvider,
-      gammaProvider
-    );
+    providerManager.loadProviders(alphaProvider, betaProvider, gammaProvider);
     providerManager.enablePublicProviders();
 
     const results = await providerManager.search(['alpha', 'beta'], '1080');
