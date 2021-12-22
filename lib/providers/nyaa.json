@@ -34,6 +34,7 @@
 	"itemSelectors": {
 		"title": "td:nth-child(2) > a",
 		"link": "td:nth-child(3) > a:nth-child(1)@href",
+		"magnet": "td:nth-child(3): a:nth-child(2)@href",
 		"desc": "td:nth-child(2) > a@href",
 		"time": "td:nth-child(5)",
 		"seeds": "td:nth-child(6) | int",
