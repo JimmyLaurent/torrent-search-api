@@ -3,6 +3,6 @@ const { createProviderHtmlSnapshotTestFromFilename } = require('./utils/testHelp
 
 describe('Test providers with html snapshots', () => {
   readdirSync('./test/html-snapshots')
-    .filter(f => f.endsWith('.html'))
+    .filter((f) => f.endsWith('.html'))
     .map(createProviderHtmlSnapshotTestFromFilename);
 });
