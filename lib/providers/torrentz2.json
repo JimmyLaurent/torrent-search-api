@@ -1,7 +1,7 @@
 {
   "name": "Torrentz2",
-  "baseUrl": "https://torrentz2.eu",
-  "searchUrl": "/?f={query}",
+  "baseUrl": "https://torrentz2.nz",
+  "searchUrl": "/search?q={query}",
   "categories": {
      "All": ""
   },
