@@ -1,29 +1,29 @@
 {
-    "name": "KickassTorrents",
-    "baseUrl": "https://katcr.co",
-    "searchUrl": "/katsearch/page/1/{query}",
-    "categories": {
-       "All": "",
-       "Movies": "url:/category/movies/page/1",
-       "TV": "url:/category/tv/page/1",
-       "Music": "url:/category/music/page/1",
-       "Games": "url:/category/games/page/1",
-       "Books": "url:/category/books/page/1",
-       "Applications": "url:/category/applications/page/1",
-       "Anime": "url:/category/anime/page/1"
-    },
-    "defaultCategory": "All",
-    "resultsPerPageCount": 25,
-    "itemsSelector": "tbody tr",
-    "itemSelectors": {
-      "title": ".torrents_table__torrent_title@text | trim",
+   "name": "KickassTorrents",
+   "baseUrl": "kickasstorrents.cr",
+   "searchUrl": "/usearch/{query}",
+   "categories": {
+      "All": "",
+      "Movies": "url:{query}/category/movies/1",
+      "TV": "url:/category/tv/",
+      "Music": "url:/category/music/1",
+      "Games": "url:/category/games/1",
+      "Books": "url:/category/books/1",
+      "Applications": "url:/category/applications/1",
+      "Anime": "url:/category/anime/1"
+   },
+   "defaultCategory": "All",
+   "resultsPerPageCount": 25,
+   "itemsSelector": ".data tbody tr.odd",
+   "itemSelectors": {
+      "title": ".torrentname@text | trim",
       "time": "td[data-title=\"Age\"]",
       "seeds": "td[data-title=\"Seed\"] | int",
       "peers": "td[data-title=\"Leech\"] | int",
       "size": "td[data-title=\"Size\"]",
       "link": "a[title=\"Download torrent file\"]@href",
       "desc": ".torrents_table__torrent_title@href"
-    },
-    "paginateSelector": "a:contains(Next)@href",
-    "torrentDetailsSelector": ".col@html"
- }
+   },
+   "paginateSelector": "a:contains(Next)@href",
+   "torrentDetailsSelector": ".col@html"
+}

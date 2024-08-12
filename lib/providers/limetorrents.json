@@ -1,6 +1,6 @@
 {
     "name": "Limetorrents",
-    "baseUrl": "https://www.limetorrents.info",
+    "baseUrl": "https://www.limetorrents.lol",
     "enableCloudFareBypass": true,
     "searchUrl": "/search/{cat}/{query}/seeds/1/",
     "categories": {
@@ -16,14 +16,14 @@
     "resultsPerPageCount": 40,
     "itemsSelector": ".table2 tr",
     "itemSelectors": {
-       "title": ".tt-name > a:nth-child(2)@text",
-       "link": "a.csprite_dl14@href",
-       "seeds": ".tdseed | int",
-       "peers": ".tdleech | int",
-       "time": "td.tdnormal:nth-child(2)@text  | match:\"(.+?) -\"",
-       "size": "td.tdnormal:nth-child(3)@text",
-       "desc": ".tt-name > a:nth-child(2)@href"
+        "title": ".tt-name > a:nth-child(2)@text",
+        "link": "a.csprite_dl14@href",
+        "seeds": ".tdseed | int",
+        "peers": ".tdleech | int",
+        "time": "td.tdnormal:nth-child(2)@text  | match:\"(.+?) -\"",
+        "size": "td.tdnormal:nth-child(3)@text",
+        "desc": ".tt-name > a:nth-child(2)@href"
     },
     "paginateSelector": "a:contains(Next page)@href",
     "torrentDetailsSelector": "#content@html"
- }
+}
