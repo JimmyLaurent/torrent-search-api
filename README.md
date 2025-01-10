@@ -1,13 +1,13 @@
-# TorrentSearchApi
+# TorrentSearchApi for barbaroussa
 
 [![npm](https://img.shields.io/npm/dm/torrent-search-api.svg?maxAge=2592000)](https://npm-stat.com/charts.html?package=torrent-search-api)
 
-Yet another node torrent search api based on x-ray.
+Yet another node torrent search api based on x-ray for barbaroussa.
 
 ## Install
 
 ```bash
-npm install torrent-search-api
+npm install torrent-search-api-for-barbaroussa
 ```
 
 ## Supported providers

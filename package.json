@@ -1,7 +1,7 @@
 {
-  "name": "torrent-search-api",
-  "version": "2.1.4",
-  "description": "Yet another node torrent scraper based on x-ray. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePiratebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Yts, Limetorrents, Eztv)",
+  "name": "torrent-search-api-for-barbaroussa",
+  "version": "1.0.5",
+  "description": "Yet another node torrent scraper based on x-ray for barbaroussa. (Support iptorrents, torrentleech, torrent9, Yyggtorrent, ThePiratebay, torrentz2, 1337x, KickassTorrent, Rarbg, TorrentProject, Yts, Limetorrents, Eztv)",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -28,11 +28,17 @@
     "eztv",
     "limetorrents"
   ],
-  "author": "Jimmy Laurent",
+  "contributors": [
+    {
+      "name": "Jimmy Laurent",
+      "url": "git://github.com/JimmyLaurent/torrent-search-api.git"
+    }
+  ],
+  "author": "Habibouldmoussa",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/JimmyLaurent/torrent-search-api.git"
+    "url": "https://github.com/Habibouldmoussa/torrent-search-api-for-barbaroussa.git"
   },
   "dependencies": {
     "cloudscraper": "^4.6.0",
@@ -51,7 +57,7 @@
     "jest-junit": "^3.6.0",
     "lint-staged": "^6.1.1",
     "nock": "^9.1.6",
-    "prettier": "^1.10.2"
+    "prettier": "^1.19.1"
   },
   "jest": {
     "testResultsProcessor": "jest-junit",
